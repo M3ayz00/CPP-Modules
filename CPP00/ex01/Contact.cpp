@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:06:19 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/14 18:23:38 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:51:59 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,37 @@ std::string Contact::getNickName() const
 	return (NickName);
 }
 
-void	Contact::setFirstName(std::string &fn)
+std::string	Contact::getPhoneNumber() const
+{
+	return (PhoneNumber);
+}
+
+std::string Contact::getDarkestSecret() const
+{
+	return (DarkestSecret);
+}
+
+void	Contact::setFirstName(std::string fn)
 {
 	FirstName = fn;
 }
 
-void	Contact::setLastName(std::string &ln)
+void	Contact::setLastName(std::string ln)
 {
 	LastName = ln;
 }
 
-void	Contact::setNickName(std::string &nn)
+void	Contact::setNickName(std::string nn)
 {
 	NickName = nn;
 }
 
-void	Contact::setPhoneNumber(std::string &pn)
+void	Contact::setPhoneNumber(std::string pn)
 {
 	PhoneNumber = pn;
 }
 
-void	Contact::setDarkestSecret(std::string &ds)
+void	Contact::setDarkestSecret(std::string ds)
 {
 	DarkestSecret = ds;
 }

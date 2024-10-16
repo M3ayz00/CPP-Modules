@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:33:57 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/14 15:55:17 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:43:47 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,22 @@
 #include <cctype>
 #include <cstdlib>
 
+#define LOG(a,b,c,d) std::cout << std::setw(10) << a << "|" << std::setw(10) << b << "|" << std::setw(10) << c << "|" << std::setw(10) << d << "|\n";
+#define DISPLAY(a,b,c,d,e) std::cout << "First name : " << a << "\nLast name : " << b << "\nNickname : " << c << "\nPhone number : " << d << "\nDarkest secret : " << e << std::endl;
+
 class PhoneBook
 {
 	private:
 		Contact		myContacts[8];
-		int	i = 0;
+		int			i = 0;
 	public:
-		void	addContact();
-		int		validateName(std::string fn);
-		int		validateNickName(std::string fn);
-		int		validatePhoneNumber(std::string fn);
-		void	displayContact();
+		void		addContact();
+		int			validateName(const std::string &fn);
+		int			validateNickName(const std::string &fn);
+		int			validatePhoneNumber(const std::string &fn);
+		int			checkIndex(const std::string &index);
+		int			displayContacts();
+		void		displayContact();
 };
 
 
