@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:33:57 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 14:43:47 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:53:54 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 class PhoneBook
 {
 	private:
-		Contact		myContacts[8];
-		int			i = 0;
+		Contact				myContacts[8];
+		static int			i;
 	public:
 		void		addContact();
 		int			validateName(const std::string &fn);

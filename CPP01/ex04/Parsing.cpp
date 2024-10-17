@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Parsing.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:44:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/17 14:04:24 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/17 16:27:45 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/10/17 17:15:49 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "fileHandling.hpp"
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
-
-class	Zombie
+int	checkArguments(char **av)
 {
-	private	:
-		std::string	name;
+	if (std::string(av[1]).empty()
+			|| std::string(av[2]).empty()
+			|| std::string(av[3]).empty())
+	{
+		std::cout << "Usage : ./appah [filename] [to be replaced] [to replace].\n";
+		return (0);
+	}
+	return (1);
+}
 
-	public	:
-		Zombie() {};
-		Zombie(std::string n);
-		~Zombie();
-		void	setName(std::string n);
-		void	announce(void);
-};
-
-Zombie* zombieHorde( int N, std::string name );
-
-#endif
+int	strSearch()

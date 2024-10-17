@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   fileManipulation.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 15:44:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/17 14:04:24 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/17 16:26:19 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/10/17 17:13:13 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "fileHandling.hpp"
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
-
-class	Zombie
+int	checkFile(const std::ifstream &File)
 {
-	private	:
-		std::string	name;
+	if (!File)
+	{
+		std::cout << "Error : cannot open file.\n";
+		return (0);
+	}
+	return (1);
+}
 
-	public	:
-		Zombie() {};
-		Zombie(std::string n);
-		~Zombie();
-		void	setName(std::string n);
-		void	announce(void);
-};
+void	replacing(std::ifstream& inFile, std::ofstream& outFile,
+	const std::string &s1, const std::string& s2)
+{
+	std::string	line;
+	while (std::getline(inFile, line))
+	{
+		
+	}
+	inFile.close();
+	outFile.close();
+}
 
-Zombie* zombieHorde( int N, std::string name );
-
-#endif

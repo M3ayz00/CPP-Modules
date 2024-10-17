@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:04:22 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 14:22:56 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:54:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class Contact
 {
 	private:
 		std::string LastName, NickName,PhoneNumber, DarkestSecret;
-		int			index;
 
 	public:
 		std::string FirstName;

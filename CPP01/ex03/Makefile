@@ -5,17 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/16 16:02:44 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/17 14:09:18 by msaadidi         ###   ########.fr        #
+#    Created: 2024/10/17 14:15:33 by msaadidi          #+#    #+#              #
+#    Updated: 2024/10/17 14:15:58 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 CC = c++
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = Zombie.cpp zombieHorde.cpp main.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
-NAME = Zombie
+NAME = Violence
+
 all : $(NAME)
 
 %.o : %.cpp

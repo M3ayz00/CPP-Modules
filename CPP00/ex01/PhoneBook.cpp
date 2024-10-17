@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 12:45:12 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 14:44:13 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:55:38 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include <iomanip>
 #include <array>
 
-
+int	PhoneBook::i = 0;
 
 int	PhoneBook::validateName(const std::string &name)
 {
-	int	i;
-	for (i = 0; i < name.length(); i++)
+	size_t	n;
+	for (n = 0; n < name.length(); n++)
 	{
-		if (!isalpha(name[i]))
+		if (!isalpha(name[n]))
 		{
 			std::cerr << "Error : name can only contain alphabetic characters." << std::endl;
 			return (0);
 		}
 	}
-	if (i < 2)
+	if (n < 2)
 	{
 		std::cerr << "Error : Name must be at least 2 characters long." << std::endl;
 		return (0);
@@ -37,9 +37,9 @@ int	PhoneBook::validateName(const std::string &name)
 
 int	PhoneBook::validateNickName(const std::string &nickName)
 {
-	for (char c : nickName)
+	for (size_t n = 0; n < nickName.length(); n++)
 	{
-		if (!isalnum(c))
+		if (!isalnum(nickName[n]))
 		{
 			std::cerr << "Error : nickname can only contain alphanumeric characters." << std::endl;
 			return (0);
@@ -50,16 +50,16 @@ int	PhoneBook::validateNickName(const std::string &nickName)
 
 int	PhoneBook::validatePhoneNumber(const std::string &phoneNumber)
 {
-	int	i;
-	for (i = 0; i < phoneNumber.length(); i++)
+	size_t	n;
+	for (n = 0; n < phoneNumber.length(); n++)
 	{
-		if (!isdigit(phoneNumber[i]))
+		if (!isdigit(phoneNumber[n]))
 		{
 			std::cerr << "Error : phone number can only contain numeric characters." << std::endl;
 			return (0);
 		}
 	}
-	if (i < 4)
+	if (n < 4)
 	{
 		std::cerr << "Error : phone number must be at least 4 digits" << std::endl;
 		return (0);
