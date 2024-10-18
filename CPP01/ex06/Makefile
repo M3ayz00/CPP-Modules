@@ -6,15 +6,15 @@
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 16:02:44 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/18 12:58:37 by msaadidi         ###   ########.fr        #
+#    Updated: 2024/10/18 14:24:56 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Parsing.cpp fileManipulation.cpp
+SRCS = main.cpp Harl.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-NAME = Replace
+NAME = harlFilter
 
 all : $(NAME)
 
@@ -26,7 +26,6 @@ $(NAME) : $(OBJS)
 
 clean :
 	@rm -rf $(OBJS)
-
 
 fclean : clean
 	@rm -rf $(NAME)

@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:27:45 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/17 17:15:49 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:00:17 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,4 @@ int	checkArguments(char **av)
 	return (1);
 }
 
-int	strSearch()
+

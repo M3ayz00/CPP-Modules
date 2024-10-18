@@ -5,30 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 16:02:59 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/18 12:59:06 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/18 14:32:57 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/10/18 14:32:58 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fileHandling.hpp"
+
+#include "Harl.hpp"
 
 int main(int ac, char **av)
 {
-	if (ac == 4)
+	if (ac == 2)
 	{
-		if (checkArguments(av))
-		{
-			std::ifstream	inFile(av[1]);
-			if (!checkInFile(inFile))
-				return (1);
-			std::ofstream	outFile(std::string(av[1]) + ".replace", std::ios::out | std::ios::trunc);
-			if (!checkOutFile(outFile))
-				return (1);
-			replacing(inFile, outFile, std::string(av[2]), std::string(av[3]));
-			return (0);
-		}
-		return (1);
+		Harl	harlito;
+		harlito.complain(av[1]);
+		return (0);
 	}
-	std::cout << "Usage : ./Replace [filename] [to be replaced] [to replace].\n";
 	return (1);
 }
