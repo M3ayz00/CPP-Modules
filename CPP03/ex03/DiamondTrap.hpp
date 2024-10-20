@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 13:12:39 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:23:26 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/20 17:39:49 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/10/20 17:58:41 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
+
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-int main()
+class   DiamondTrap : public ScavTrap, public FragTrap
 {
-    ScavTrap P("M3ayz00");
-    ScavTrap L;
-    ScavTrap M(P);
-    M.attack("pixou");
-    P.attack("Khokho Bla3");
-    P.attack("Khokho Bla3");
-    P.takeDamage(40);
-    P.attack("Khokho Bla3");
-    P.takeDamage(33);
-    P.beRepaired(50);
-    P.attack("Khokho Bla3");
-    P.takeDamage(70);
-    P.guardGate();
-    P.attack("Khokho Bla3");
-    P.beRepaired(30);
+    private :
+        std::string    name;
+    public  :
+        DiamondTrap();
+        DiamondTrap(const std::string& _name);
+        DiamondTrap(const DiamondTrap& F);
+        ~DiamondTrap();
 
-}
+        DiamondTrap&   operator=(const DiamondTrap& F);
+        void        whoAmI(void);
+
+};
+
+#endif

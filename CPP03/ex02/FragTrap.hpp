@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 13:12:39 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:23:26 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/20 16:48:20 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/10/20 17:35:34 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-int main()
+#include "ClapTrap.hpp"
+
+class   FragTrap : public ClapTrap
 {
-    ScavTrap P("M3ayz00");
-    ScavTrap L;
-    ScavTrap M(P);
-    M.attack("pixou");
-    P.attack("Khokho Bla3");
-    P.attack("Khokho Bla3");
-    P.takeDamage(40);
-    P.attack("Khokho Bla3");
-    P.takeDamage(33);
-    P.beRepaired(50);
-    P.attack("Khokho Bla3");
-    P.takeDamage(70);
-    P.guardGate();
-    P.attack("Khokho Bla3");
-    P.beRepaired(30);
+    public  :
+        FragTrap();
+        FragTrap(const std::string& _name);
+        FragTrap(const FragTrap& F);
+        ~FragTrap();
 
-}
+        FragTrap&   operator=(const FragTrap& F);
+        void        highFivesGuys(void);
+
+};
+
+#endif

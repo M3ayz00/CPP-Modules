@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 12:40:35 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 13:14:12 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:32:24 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 ClapTrap::ClapTrap(const std::string& _name) : name(_name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-    std::cout << "ClapTrap " + name + " is created\n";
+    std::cout << "ClapTrap " + name + " is ready for action\n";
 }
 
 ClapTrap::ClapTrap() : name(""), hitPoints(10),  energyPoints(10),attackDamage(0)
 {
-    std::cout << "Default ClapTrap is created\n";
+    std::cout << "Default ClapTrap is ready for action\n";
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " + name + " is destroyed\n";
+    std::cout << "ClapTrap " + name + " is shutting down...\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& C)
@@ -35,9 +35,9 @@ ClapTrap::ClapTrap(const ClapTrap& C)
 
 ClapTrap&   ClapTrap::operator=(const ClapTrap& C)
 {
-    std::cout << "ClapTrap " + C.name + " has been cloned\n";
     if (this != &C)
     {
+        std::cout << "ClapTrap " + C.name + " has been cloned\n";
         name = C.name;
         attackDamage = C.attackDamage;
         hitPoints = C.hitPoints;

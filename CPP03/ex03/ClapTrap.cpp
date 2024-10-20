@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const std::string& _name) : name(_name), hitPoints(10), energ
     std::cout << "ClapTrap " + name + " is ready for action\n";
 }
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap() : name(""), hitPoints(10),  energyPoints(10),attackDamage(0)
 {
     std::cout << "Default ClapTrap is ready for action\n";
 }
@@ -35,9 +35,9 @@ ClapTrap::ClapTrap(const ClapTrap& C)
 
 ClapTrap&   ClapTrap::operator=(const ClapTrap& C)
 {
+    std::cout << "ClapTrap " + C.name + " has been cloned (using assignment)\n";
     if (this != &C)
     {
-        std::cout << "ClapTrap " + C.name + " has been cloned (using assignment)\n";
         name = C.name;
         attackDamage = C.attackDamage;
         hitPoints = C.hitPoints;
