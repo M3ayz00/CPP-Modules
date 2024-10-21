@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:54:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 14:41:12 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:33:31 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Cat& Cat::operator=(const Cat& C)
 {
     if (this != &C)
     {
-        std::cout << "Cat assignment copy constructor called\n";   
+        std::cout << "Cat assignment copy operator called\n";   
         Animal::operator=(C);
     }
     return (*this);

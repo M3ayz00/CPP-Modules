@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:47:55 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 14:21:48 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:33:31 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Animal& Animal::operator=(const Animal& A)
 {
     if (this != &A)
     {
-        std::cout << "Animal assignment copy constructor called\n";
+        std::cout << "Animal assignment copy operator called\n";
         type = A.type;
     }
     return (*this);
