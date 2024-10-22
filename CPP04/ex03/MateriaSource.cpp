@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:13:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:29:28 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/22 12:47:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ MateriaSource::~MateriaSource()
     std::cout << "MateriaSource Destructor called\n";
     for (int i = 0; i < 4; i++)
     {
-        if (!materia[i])
-            continue;
-        delete materia[i];
+        if (materia[i] != NULL)
+            delete materia[i];
     }
 }
 
