@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 18:53:13 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 10:40:02 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:29:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class   MateriaSource : public IMateriaSource
         
         void        learnMateria(AMateria* A);
         AMateria*   createMateria(std::string const & type);
-    
 };
 
 #endif

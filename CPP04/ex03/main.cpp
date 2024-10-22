@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:48:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 10:26:35 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:36:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ int main()
     tmp = src->createMateria("cure");
     me->equip(tmp);
     ICharacter* bob = new Character("bob");
+    AMateria* tmp2 = me->
+    me->unequip(0);
+    delete tmp2;
     me->use(0, *bob);
     me->use(1, *bob);
-    // delete bob;
-    // delete me;
-    // delete src;
+    delete bob;
+    delete me;
+    delete src;
     return 0;
 }

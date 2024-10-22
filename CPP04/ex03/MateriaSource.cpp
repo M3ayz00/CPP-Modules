@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:13:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:25:54 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:29:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,4 @@ AMateria*   MateriaSource::createMateria(std::string const & type)
     }
     return (0);
 }
+
