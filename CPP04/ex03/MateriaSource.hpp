@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 18:53:13 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:45:48 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:40:02 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 class   MateriaSource : public IMateriaSource
 {
     private :
-        AMateria*   materia;
-        
+        AMateria*   materia[4];
 
     public  :
         MateriaSource();

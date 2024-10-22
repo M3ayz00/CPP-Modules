@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:14:30 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:01:21 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 09:59:14 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Character : public ICharacter
 {
     private:
         std::string name;
-        AMateria*   slot;
+        AMateria*   slot[4];
 
     public:
         Character();

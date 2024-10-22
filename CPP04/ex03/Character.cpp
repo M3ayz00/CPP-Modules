@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:11:59 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:26:18 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,31 @@
 Character::Character()
 {
     std::cout << "Character default constructor called\n";
+    for (int i = 0; i < 4; i++)
+        slot[i] = NULL;
 }
 
 Character::Character(const std::string& _name) : name(_name)
 {
     std::cout << "Character constructor called\n";
-    slot = new AMateria[4];
     for (int i = 0; i < 4; i++)
-        inventory[i] = nullptr;
+        slot[i] = NULL;
 }
 
 
 Character& Character::operator=(const Character& C)
 {
-    if (this != &I)
+    if (this != &C)
     {
         for (int i = 0; i < 4; i++)
         {
             delete slot[i];
             if (C.slot[i])
-                slot[i] = C.slot[i].clone();
+                slot[i] = C.slot[i]->clone();
             else
-                slot[i] = nullptr;
+                slot[i] = NULL;
         }
-        std:::cout << "Character assignment copy operator called\n";
+        std::cout << "Character assignment copy operator called\n";
     }
     return (*this);
 }
@@ -58,7 +59,6 @@ Character::~Character()
             continue;
         delete slot[i];
     }
-    delete[] slot;
 }
 
 std::string const& Character::getName() const
@@ -68,23 +68,24 @@ std::string const& Character::getName() const
 
 void    Character::equip(AMateria* m)
 {
-    for (int i = 0; (m && i < 4); i++)
+    for (int i = 0;  i < 4; i++)
     {
-        if (slot[i])
-            continue ;
-        slot[i] = m;
-        break ;
+        if (slot[i] == NULL)
+        {
+            slot[i] = m;
+            break ;
+        }
     }
 }
 
 void    Character::unequip(int idx)
 {
-    if ((idx >= 0 || idx <= 3) && (slot && slot[idx]))
+    if ((idx >= 0 || idx <= 3) && slot[idx])
         slot[idx] = nullptr;
 }
 
 void    Character::use(int idx, ICharacter& target)
 {
-    slot[idx].use(target);
-    AMateria::use(target);
+    if ((idx >= 0 && idx <= 3) && slot[idx])
+        slot[idx]->use(target);
 }

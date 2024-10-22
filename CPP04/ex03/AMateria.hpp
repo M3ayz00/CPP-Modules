@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:55:46 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:55:58 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:03:41 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
-class AMateria
+class   ICharacter;
+
+class   AMateria
 {
     protected   :
         std::string _type;

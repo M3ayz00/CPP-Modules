@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:13:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:48:33 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:25:54 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 MateriaSource::MateriaSource()
 {
     std::cout << "MateriaSource default constructor called\n";
-    materia = new AMateria[4];
     for (int i = 0; i < 4; i++)
-        materia[i] = nullptr;
+        materia[i] = NULL;
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& M)
@@ -28,12 +27,13 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& M)
         {
             delete materia[i];
             if (M.materia[i])
-                materia[i] = M.materia[i].clone()
+                materia[i] = M.materia[i]->clone();
             else
-                materia[i] = nullptr;
+                materia[i] = NULL;
         }
         std::cout << "MateriaSource assignment copy operator called\n";
     }
+    return (*this);
 }
 
 MateriaSource::MateriaSource(const MateriaSource& M)
@@ -51,7 +51,6 @@ MateriaSource::~MateriaSource()
             continue;
         delete materia[i];
     }
-    delete[] materia;
 }
 
 
@@ -59,7 +58,7 @@ void    MateriaSource::learnMateria(AMateria* A)
 {
     for (int i = 0; (A && i < 4); i++)
     {
-        if (materia[i])
+        if (materia[i] != NULL)
             continue ;
         materia[i] = A;
         break ;
@@ -70,13 +69,15 @@ AMateria*   MateriaSource::createMateria(std::string const & type)
 {
     if (type.empty())
         return (0);
-
     AMateria*   M;
+    M = 0;
     for (int i = 3; i >= 0; i--)
     {
-        if (materia[i].getType() == type)
-            M = materia[i].clone();
-        else
-            return (0);
+        if (materia[i] != NULL && materia[i]->getType() == type)
+        {
+            M = materia[i]->clone();
+            return (M);
+        }
     }
+    return (0);
 }

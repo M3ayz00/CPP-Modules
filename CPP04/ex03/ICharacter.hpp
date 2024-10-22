@@ -6,15 +6,16 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:28:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 17:15:38 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:02:08 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICHARACTER_HPP
 #define ICHARACTER_HPP
 
-#include <iostream>
 #include "AMateria.hpp"
+
+class   AMateria;
 
 class   ICharacter
 {

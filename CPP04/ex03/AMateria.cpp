@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:01:31 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:07:05 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:03:37 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ AMateria::~AMateria()
 
 void AMateria::use(ICharacter& target)
 {
-    std::cout << "...\n";
+    std::cout << "...\n" + target.getName();
 }
 
 std::string const& AMateria::getType() const

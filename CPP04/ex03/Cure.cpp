@@ -6,14 +6,15 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:16:48 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:07:19 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:04:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria(), _type("cure")
+Cure::Cure() : AMateria()
 {
+    _type = "cure";
     std::cout << "Cure default Constructor called\n";
 }
 
@@ -33,7 +34,7 @@ Cure&   Cure::operator=(const Cure& C)
     if (this != &C)
     {
         AMateria::operator=(C);
-        std::cout << "Cure copy  called\n"
+        std::cout << "Cure copy  called\n";
     }
     return (*this);
 }

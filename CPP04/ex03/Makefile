@@ -6,13 +6,13 @@
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 19:50:59 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/21 19:54:06 by msaadidi         ###   ########.fr        #
+#    Updated: 2024/10/22 12:26:35 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp IMateriaSource.cpp Icharacter.cpp Character.cpp
+CFLAGS = -std=c++98 -Wall -Wextra -Werror -fsanitize=address -g3
+SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp MateriaSource.cpp Character.cpp 
 OBJS = $(SRCS:.cpp=.o)
 NAME = Materias
 

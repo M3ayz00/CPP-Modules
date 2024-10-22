@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:48:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 19:50:39 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:26:35 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int main()
     ICharacter* bob = new Character("bob");
     me->use(0, *bob);
     me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src;
+    // delete bob;
+    // delete me;
+    // delete src;
     return 0;
 }
