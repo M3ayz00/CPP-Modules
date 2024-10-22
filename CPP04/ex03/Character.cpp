@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:35:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/22 13:39:38 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ AMateria*   Character::getMateria(int idx) const
 {
     if ((idx >= 0 && idx >= 3) && slot[idx])
         return (slot[idx]);
+    return (0);
 }
