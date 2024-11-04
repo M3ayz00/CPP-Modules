@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 18:49:47 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 13:05:15 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/02 16:39:09 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int main(int ac, char **av)
 	PhoneBook	phoneBook;
 	std::string	prompt;
 
+	std::time_t now = std::time(NULL);
+	std::cout << now << std::endl;
 	if (ac == 1)
 	{
 		do

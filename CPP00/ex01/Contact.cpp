@@ -6,11 +6,13 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:06:19 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 13:51:59 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:40:47 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+
+Contact::Contact() : FirstName(""){}
 
 std::string Contact::getFirstName() const
 {
@@ -37,27 +39,27 @@ std::string Contact::getDarkestSecret() const
 	return (DarkestSecret);
 }
 
-void	Contact::setFirstName(std::string fn)
+void	Contact::setFirstName(const std::string& fn)
 {
 	FirstName = fn;
 }
 
-void	Contact::setLastName(std::string ln)
+void	Contact::setLastName(const std::string& ln)
 {
 	LastName = ln;
 }
 
-void	Contact::setNickName(std::string nn)
+void	Contact::setNickName(const std::string& nn)
 {
 	NickName = nn;
 }
 
-void	Contact::setPhoneNumber(std::string pn)
+void	Contact::setPhoneNumber(const std::string& pn)
 {
 	PhoneNumber = pn;
 }
 
-void	Contact::setDarkestSecret(std::string ds)
+void	Contact::setDarkestSecret(const std::string& ds)
 {
 	DarkestSecret = ds;
 }

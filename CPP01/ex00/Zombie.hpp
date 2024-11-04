@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:05:26 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/16 15:35:39 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:01:22 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class	Zombie
 	private	:
 		std::string	name;
 	public	:
-		Zombie(std::string n) : name(n) {};
-		~Zombie() { std::cout << name << std::endl; };
+		Zombie(std::string n);
+		~Zombie();
 		void	announce(void);
 };
 

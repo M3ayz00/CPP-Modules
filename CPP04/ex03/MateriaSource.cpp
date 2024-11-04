@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:13:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:29:28 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/22 14:11:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ MateriaSource::~MateriaSource()
 {
     std::cout << "MateriaSource Destructor called\n";
     for (int i = 0; i < 4; i++)
-    {
-        if (!materia[i])
-            continue;
         delete materia[i];
-    }
 }
 
 

@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/14 18:25:18 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/24 16:55:21 by msaadidi         ###   ########.fr        #
+#    Created: 2024/10/22 14:15:06 by msaadidi          #+#    #+#              #
+#    Updated: 2024/10/22 14:15:29 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = Account.cpp tests.cpp
+CFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address -g3
+SRCS = main.cpp Bureaucrat.cpp 
 OBJS = $(SRCS:.cpp=.o)
-NAME = BankingSystem
+NAME = Bureaucrat
 
 all : $(NAME)
 
@@ -27,9 +27,7 @@ $(NAME) : $(OBJS)
 clean :
 	@rm -rf $(OBJS)
 
-
 fclean : clean
 	@rm -rf $(NAME)
 
 re : fclean all
-

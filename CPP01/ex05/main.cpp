@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:59:25 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/18 14:06:24 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:12:43 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int main(int ac, char **av)
 		harlito.complain(av[1]);
 		return (0);
 	}
+	std::cout << "Usgae: ./Harl [INFO/DEBUG/WARNING/ERROR]\n";
 	return (1);
 }
