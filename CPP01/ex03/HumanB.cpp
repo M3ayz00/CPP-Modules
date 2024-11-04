@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:17:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/17 16:01:17 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:36:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ HumanB::HumanB(const std::string &_name) : name(_name), weapon(NULL){}
 void	HumanB::attack()
 {
 	if (!weapon)
-		std::cout << name << " has no weapon.\n";
+		std::cout << name << " has no weapon\n";
 	else
 	{
 		std::cout << name << " attacks with their " << weapon->getType() << "\n";

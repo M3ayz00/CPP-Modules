@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:14:30 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:29:20 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/22 12:55:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class Character : public ICharacter
         void                unequip(int idx);
         void                use(int idx, ICharacter& target);
         std::string const&  getName() const;
-        AMateria*           getMateria(int idx) const;
 };
 
 

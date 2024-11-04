@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 15:32:06 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/17 13:48:41 by msaadidi         ###   ########.fr        #
+#    Updated: 2024/11/04 14:03:26 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ $(NAME) : $(OBJS)
 
 clean :
 	@rm -rf $(OBJS)
-
 
 fclean : clean
 	@rm -rf $(NAME)
