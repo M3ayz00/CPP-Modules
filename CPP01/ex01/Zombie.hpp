@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:44:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/17 14:04:24 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:49:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ class	Zombie
 		std::string	name;
 
 	public	:
-		Zombie() {};
-		Zombie(std::string n);
+		Zombie();
+		Zombie(const std::string& n);
 		~Zombie();
-		void	setName(std::string n);
+
+		void	setName(const std::string& n);
 		void	announce(void);
 };
 
-Zombie* zombieHorde( int N, std::string name );
+Zombie* zombieHorde(int N, const std::string& name);
 
 #endif

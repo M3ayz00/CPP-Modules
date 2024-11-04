@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parsing.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:27:45 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/18 12:00:17 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:36:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int	checkArguments(char **av)
 			|| std::string(av[2]).empty()
 			|| std::string(av[3]).empty())
 	{
-		std::cout << "Usage : ./appah [filename] [to be replaced] [to replace].\n";
+		std::cout << "Usage : ./Replace [filename] [to be replaced] [to replace].\n";
 		return (0);
 	}
 	return (1);
 }
-
-
