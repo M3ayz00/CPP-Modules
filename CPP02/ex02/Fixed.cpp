@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:20:29 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 11:43:33 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/10 23:18:03 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ Fixed::Fixed() : fixedPointNum(0)
 Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called\n";
-	fixedPointNum = num * pow(2, fractBits);
+	fixedPointNum = num << fractBits;
 }
 
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called\n";
-	fixedPointNum = roundf(num * pow(2, fractBits));
+	fixedPointNum = roundf(num * (1 << fractBits));
 }
 
 Fixed& Fixed::operator=(const Fixed &F)
@@ -34,7 +34,7 @@ Fixed& Fixed::operator=(const Fixed &F)
 	if (this != &F)
 	{
 		std::cout << "Copy assignment operator called\n";
-		fixedPointNum = F.getRawBits() ;
+		fixedPointNum = F.fixedPointNum;
 	}
 	return *this;
 }
@@ -97,34 +97,33 @@ bool	Fixed::operator>(const Fixed &F) const
 
 Fixed&	Fixed::operator++()
 {
-	*this = *this + EPSILON(fractBits);
+	fixedPointNum++;
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int)
 {
 	Fixed	tmp = *this;
-	*this = *this + EPSILON(fractBits);
+	fixedPointNum++;
 	return (tmp);
 }
 
 Fixed&	Fixed::operator--()
 {
-	*this = *this - EPSILON(fractBits);
+	fixedPointNum--;
 	return (*this);
 }
 
 Fixed	Fixed::operator--(int)
 {
 	Fixed	tmp = *this;
-	*this = *this - EPSILON(fractBits);
+	fixedPointNum--;
 	return (tmp);
 }
 
-Fixed::Fixed(const Fixed &F)
+Fixed::Fixed(const Fixed &F) : fixedPointNum(F.fixedPointNum)
 {
 	std::cout << "Copy constructor called\n";
-	*this = F;
 }
 
 
@@ -146,12 +145,12 @@ int		Fixed::getRawBits( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	return (fixedPointNum / pow(2, fractBits));
+	return (fixedPointNum / static_cast<float>(1 << fractBits));
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (roundf(fixedPointNum / pow(2, fractBits)));
+	return (roundf(fixedPointNum / static_cast<float>(1 << fractBits)));
 }
 
 Fixed&		Fixed::min(Fixed& F1, Fixed& F2)
