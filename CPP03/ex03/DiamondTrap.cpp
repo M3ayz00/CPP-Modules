@@ -6,18 +6,23 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:40:54 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 18:47:07 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 19:30:34 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), name("default")
+DiamondTrap::DiamondTrap() : name("default")
 {
     std::cout << "DiamondTrap " + name + " is ready for action\n";
+    ClapTrap::name = name + "_clap_name";
+    energyPoints = ScavTrap::energyPoints;
+    hitPoints = FragTrap::hitPoints;
+    attackDamage = FragTrap::attackDamage;
+    std::cout << "DiamondTrap's EnergyPoints : " << std::to_string(energyPoints) << "\n";
 }
 
-DiamondTrap::DiamondTrap(const std::string& _name) : ClapTrap(_name), FragTrap(_name), ScavTrap(_name), name(_name)
+DiamondTrap::DiamondTrap(const std::string& _name) : name(_name)
 {
     std::cout << "DiamondTrap " + name + " is ready for action\n";
     ClapTrap::name = _name + "_clap_name";
@@ -30,11 +35,11 @@ DiamondTrap&   DiamondTrap::operator=(const DiamondTrap& F)
 {
     if (this == &F) return (*this);
     name = F.name;
+    std::cout << "DiamondTrap " + name + " has been cloned (using assignment)\n";
     ClapTrap::name = F.name + "_clap_name";
     hitPoints = F.FragTrap::hitPoints;
     energyPoints = F.ScavTrap::energyPoints;
     attackDamage = F.FragTrap::attackDamage;
-    std::cout << "DiamondTrap " + name + " has been cloned (using assignment)\n";
     return (*this);
 }
 
@@ -48,7 +53,6 @@ DiamondTrap::~DiamondTrap()
 {
     std::cout << "DiamondTrap " + name + " is shutting down...\n";
 }
-
 
 void    DiamondTrap::whoAmI(void) const
 {

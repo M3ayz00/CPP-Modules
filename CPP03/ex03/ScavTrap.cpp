@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:19:35 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 17:19:46 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 19:30:03 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "ScavTrap " + name + " is ready for action\n";
+    energyPoints = 50;
+    attackDamage = 20;
+    std::cout << "ScavTrap's EnergyPoints : " << std::to_string(energyPoints) << "\n";
+
 }
 
 ScavTrap::ScavTrap(const std::string& _name) : ClapTrap(_name)
@@ -37,7 +41,10 @@ ScavTrap::~ScavTrap()
 ScavTrap&   ScavTrap::operator=(const ScavTrap& S)
 {
     if (this == &S) return *this;
-    ClapTrap::operator=(S);
+    name = S.name;
+    energyPoints = S.energyPoints;
+    hitPoints = S.hitPoints;
+    attackDamage = S.attackDamage;
     std::cout << "ScavTrap " + name + " has been cloned (using assignment)\n";
     return (*this);
 }
