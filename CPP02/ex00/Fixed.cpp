@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:20:29 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/10 14:43:35 by m3ayz00          ###   ########.fr       */
+/*   Updated: 2024/11/11 12:33:14 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ Fixed::Fixed() : fixedPointNum(0)
 }
 Fixed& Fixed::operator=(const Fixed &F)
 {
-	if (this != &F)
-	{
-		std::cout << "Copy assignment operator called\n";
-		fixedPointNum = F.getRawBits() ;
-	}
+	std::cout << "Copy assignment operator called\n";
+	if (this == &F) return *this;
+	fixedPointNum = F.getRawBits() ;
 	return *this;
 }
 

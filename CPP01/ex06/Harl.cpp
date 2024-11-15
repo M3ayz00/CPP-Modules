@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:27:50 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/18 15:05:30 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:07:40 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void	Harl::complain(std::string level)
 		case 3 :
 			error();
 			break ;
-		case 4 :
+		default :
 			std::cout << "[ Probably complaining about insignificant problems ]\n";
 	}
-
 }

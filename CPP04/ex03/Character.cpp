@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:29:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 12:56:00 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/08 18:10:21 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ Character::Character(const Character& C)
 Character::~Character()
 {
     std::cout << "Character Destructor called\n";
-    for (int i = 0; i < 4; i++)
-    {
-        if (!slot[i])
-            continue;
-        delete slot[i];
-    }
+    // for (int i = 0; i < 4; i++)
+    // {
+    //     if (!slot[i])
+    //         continue;
+    //     delete slot[i];
+    // }
 }
 
 std::string const& Character::getName() const

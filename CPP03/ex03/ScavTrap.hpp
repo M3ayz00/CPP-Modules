@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:19:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:39:20 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:19:46 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class ScavTrap : virtual public ClapTrap
         ~ScavTrap();
 
         ScavTrap&   operator=(const ScavTrap &S);
-        void        guardGate();
+
+        void        attack(const std::string& target);
+        void        guardGate() const;
 };
 
 #endif

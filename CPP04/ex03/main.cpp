@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:48:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 13:01:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/08 18:06:52 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main()
     // swp = tmp;
     me->equip(tmp);
     tmp = src->createMateria("cure");
+    me->equip(tmp);
     me->equip(tmp);
     ICharacter* bob = new Character("bob");
     me->use(0, *bob);

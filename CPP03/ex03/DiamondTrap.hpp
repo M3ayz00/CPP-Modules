@@ -6,17 +6,17 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:49 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:58:41 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:16:44 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DIAMONDTRAP_HPP
 #define DIAMONDTRAP_HPP
 
-#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-class   DiamondTrap : public ScavTrap, public FragTrap
+class   DiamondTrap : public FragTrap, public ScavTrap
 {
     private :
         std::string    name;
@@ -27,8 +27,8 @@ class   DiamondTrap : public ScavTrap, public FragTrap
         ~DiamondTrap();
 
         DiamondTrap&   operator=(const DiamondTrap& F);
-        void        whoAmI(void);
-
+        void        attack(const std::string& target);
+        void        whoAmI(void) const;
 };
 
 #endif

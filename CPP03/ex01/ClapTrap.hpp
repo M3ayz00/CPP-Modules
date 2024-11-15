@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 11:58:51 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 16:16:35 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:42:51 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define CLAPTRAP_HPP
 
 #include <iostream>
-
 
 class ClapTrap
 {

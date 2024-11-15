@@ -6,13 +6,13 @@
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/20 11:58:26 by msaadidi          #+#    #+#              #
-#    Updated: 2024/10/20 17:37:19 by msaadidi         ###   ########.fr        #
+#    Updated: 2024/11/13 20:34:36 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
+SRCS = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = FragTrap
 

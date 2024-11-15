@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:48:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:39:43 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:16:35 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ class   FragTrap : virtual public ClapTrap
         ~FragTrap();
 
         FragTrap&   operator=(const FragTrap& F);
-        void        highFivesGuys(void);
-
+        void        attack(const std::string& target);
+        void        highFivesGuys(void) const;
+        void        guardGate() const;
 };
 
 #endif

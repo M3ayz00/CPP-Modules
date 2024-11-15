@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:44:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/04 15:49:34 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/05 15:16:31 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <iostream>
 
 #ifndef ZOMBIE_HPP
 #define ZOMBIE_HPP
 
+#include <iostream>
 class	Zombie
 {
 	private	:

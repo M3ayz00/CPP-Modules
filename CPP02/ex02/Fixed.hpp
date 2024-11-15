@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:13:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/10 23:06:36 by m3ayz00          ###   ########.fr       */
+/*   Updated: 2024/11/11 16:27:36 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <cmath>
 
-#define EPSILON(x) (1.0f / (1 << x))
 
 class	Fixed
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:17:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/04 16:36:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/05 17:54:45 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	HumanB::attack()
 	if (!weapon)
 		std::cout << name << " has no weapon\n";
 	else
-	{
 		std::cout << name << " attacks with their " << weapon->getType() << "\n";
-	}
 }
 
 void	HumanB::setWeapon(Weapon &_weapon)

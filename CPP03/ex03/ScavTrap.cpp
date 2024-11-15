@@ -6,21 +6,20 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:19:35 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:32:24 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:19:46 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
-    std::cout << "Default ScavTrap is ready for action\n";
+    std::cout << "ScavTrap " + name + " is ready for action\n";
 }
 
 ScavTrap::ScavTrap(const std::string& _name) : ClapTrap(_name)
 {
     std::cout << "ScavTrap " + name + " is ready for action\n";
-    hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
 }
@@ -35,18 +34,33 @@ ScavTrap::~ScavTrap()
     std::cout << "ScavTrap " + name + " is shutting down...\n";
 }
 
-
 ScavTrap&   ScavTrap::operator=(const ScavTrap& S)
 {
-    if (this != &S)
-    {
-        ClapTrap::operator=(S);
-        std::cout << "ScavTrap " + name + " has been cloned\n";
-    }
+    if (this == &S) return *this;
+    ClapTrap::operator=(S);
+    std::cout << "ScavTrap " + name + " has been cloned (using assignment)\n";
     return (*this);
 }
 
-void    ScavTrap::guardGate()
+void    ScavTrap::guardGate() const
 {
     std::cout << "ScavTrap " + name + " is in Gate Keeper mode!\n";
+}
+
+void        ScavTrap::attack(const std::string& target)
+{
+    if (hitPoints > 0)
+    {
+        if (energyPoints > 0)
+        {
+            std::cout << "ScavTrap " + name + " attacks " + target + " causing ";
+            std::cout << attackDamage;
+            std::cout << " points of damage!\n";
+            energyPoints--;
+        }
+        else
+            std::cout << "ScavTrap " + name + " has no energy points left!\n";
+    }
+    else
+        std::cout << "ScavTrap " + name + " is dead\n";
 }

@@ -6,23 +6,22 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:50:30 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/20 17:33:43 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:21:10 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
-    std::cout << "Default FragTrap is ready for action\n";
+    std::cout << "FragTrap " + name + " is ready for action\n";
 }
 
 FragTrap::FragTrap(const std::string& _name) : ClapTrap(_name)
 {
     std::cout << "FragTrap " + name + " is ready for action\n";
-    hitPoints = 100;
-    energyPoints = 50;
-    attackDamage = 20;
+    energyPoints = 100;
+    attackDamage = 30;
 }
 
 FragTrap::FragTrap(const FragTrap& F) : ClapTrap(F)
@@ -35,18 +34,38 @@ FragTrap::~FragTrap()
     std::cout << "FragTrap " + name + " is shutting down...\n";
 }
 
-
 FragTrap&   FragTrap::operator=(const FragTrap& F)
 {
-    if (this != &F)
-    {
-        ClapTrap::operator=(F);
-        std::cout << "FragTrap " + name + " has been cloned\n";
-    }
+    if (this == &F) return (*this);
+    ClapTrap::operator=(F);
+    std::cout << "FragTrap " + name + " has been cloned (using assignment)\n";
     return (*this);
 }
 
-void    FragTrap::highFivesGuys()
+void    FragTrap::highFivesGuys() const
 {
     std::cout << "FragTrap : \"Who wants a HIGH FIVE?! Oh yeah! Bring it in! 💥🖐️💥\"\n";
+}
+
+void    FragTrap::guardGate() const
+{
+    std::cout << "FragTrap " + name + " is in Gate Keeper mode!\n";
+}
+
+void        FragTrap::attack(const std::string& target)
+{
+    if (hitPoints > 0)
+    {
+        if (energyPoints > 0)
+        {
+            std::cout << "FragTrap " + name + " attacks " + target + " causing ";
+            std::cout << attackDamage;
+            std::cout << " points of damage!\n";
+            energyPoints--;
+        }
+        else
+            std::cout << "FragTrap " + name + " has no energy points left!\n";
+    }
+    else
+        std::cout << "FragTrap " + name + " is dead\n";
 }

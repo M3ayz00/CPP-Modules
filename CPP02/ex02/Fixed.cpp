@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:20:29 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/10 23:18:03 by m3ayz00          ###   ########.fr       */
+/*   Updated: 2024/11/11 16:27:33 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ Fixed::Fixed(const float num)
 
 Fixed& Fixed::operator=(const Fixed &F)
 {
-	if (this != &F)
-	{
-		std::cout << "Copy assignment operator called\n";
-		fixedPointNum = F.fixedPointNum;
-	}
+	std::cout << "Copy assignment operator called\n";
+	if (this == &F) return *this;
+	fixedPointNum = F.fixedPointNum;
 	return *this;
 }
 
@@ -47,6 +45,8 @@ std::ostream&	operator<<(std::ostream &os, const Fixed &F)
 
 Fixed	Fixed::operator/(const Fixed &F) const
 {
+	if (F.fixedPointNum == 0)
+		return (Fixed(0));
 	return (Fixed(toFloat() / F.toFloat()));
 }
 
@@ -121,9 +121,10 @@ Fixed	Fixed::operator--(int)
 	return (tmp);
 }
 
-Fixed::Fixed(const Fixed &F) : fixedPointNum(F.fixedPointNum)
+Fixed::Fixed(const Fixed &F)
 {
 	std::cout << "Copy constructor called\n";
+	*this = F;
 }
 
 
