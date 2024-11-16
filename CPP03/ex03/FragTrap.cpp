@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:50:30 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 19:29:56 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:22:50 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ FragTrap::FragTrap() : ClapTrap()
     std::cout << "FragTrap " + name + " is ready for action\n";
     energyPoints = 100;
     attackDamage = 30;
-    std::cout << "FragTrap's EnergyPoints : " << std::to_string(energyPoints) << "\n";
 }
 
 FragTrap::FragTrap(const std::string& _name) : ClapTrap(_name)
@@ -75,3 +74,14 @@ void        FragTrap::attack(const std::string& target)
     else
         std::cout << "FragTrap " + name + " is dead\n";
 }
+
+unsigned int    FragTrap::getHp(void) const
+{
+    return (100);
+}
+
+unsigned int    FragTrap::getAd(void) const
+{
+    return (30);
+}
+

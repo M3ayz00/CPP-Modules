@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:19:17 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 17:19:46 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/15 23:47:27 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class ScavTrap : virtual public ClapTrap
 
         void        attack(const std::string& target);
         void        guardGate() const;
+
+        unsigned int getEp(void) const;
 };
 
 #endif

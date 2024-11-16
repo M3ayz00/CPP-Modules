@@ -3,50 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:40:54 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 19:30:34 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:42:39 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : name("default")
+DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
 {
-    std::cout << "DiamondTrap " + name + " is ready for action\n";
+    name = "default";
     ClapTrap::name = name + "_clap_name";
-    energyPoints = ScavTrap::energyPoints;
-    hitPoints = FragTrap::hitPoints;
-    attackDamage = FragTrap::attackDamage;
-    std::cout << "DiamondTrap's EnergyPoints : " << std::to_string(energyPoints) << "\n";
+    energyPoints = ScavTrap::getEp();
+    hitPoints = FragTrap::getHp();
+    attackDamage = FragTrap::getAd();
+    std::cout << "DiamondTrap " + name + " is ready for action\n";
 }
 
-DiamondTrap::DiamondTrap(const std::string& _name) : name(_name)
+DiamondTrap::DiamondTrap(const std::string& _name) : name(_name), ClapTrap(_name), FragTrap(_name), ScavTrap(_name)
 {
     std::cout << "DiamondTrap " + name + " is ready for action\n";
     ClapTrap::name = _name + "_clap_name";
-    hitPoints = FragTrap::hitPoints;
-    energyPoints = ScavTrap::energyPoints;
-    attackDamage = FragTrap::attackDamage;
+    hitPoints = FragTrap::getHp();
+    energyPoints = ScavTrap::getEp();
+    attackDamage = FragTrap::getAd();
 }
 
-DiamondTrap&   DiamondTrap::operator=(const DiamondTrap& F)
+DiamondTrap&   DiamondTrap::operator=(const DiamondTrap& D)
 {
-    if (this == &F) return (*this);
-    name = F.name;
+    if (this == &D) return (*this);
+    name = D.name;
     std::cout << "DiamondTrap " + name + " has been cloned (using assignment)\n";
-    ClapTrap::name = F.name + "_clap_name";
-    hitPoints = F.FragTrap::hitPoints;
-    energyPoints = F.ScavTrap::energyPoints;
-    attackDamage = F.FragTrap::attackDamage;
+    ClapTrap::name = D.name + "_clap_name";
+    hitPoints = D.FragTrap::getHp();
+    energyPoints = D.ScavTrap::getEp();
+    attackDamage = D.FragTrap::getAd();
     return (*this);
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& F)
+DiamondTrap::DiamondTrap(const DiamondTrap& D) : ClapTrap(D), ScavTrap(D), FragTrap(D)
 {
+    name = D.name;
+    ClapTrap::name = D.name + "_clap_name";
+    hitPoints = D.hitPoints;
+    energyPoints = D.energyPoints;
+    attackDamage = D.attackDamage;
     std::cout << "DiamondTrap " + name + " has been cloned (using copy constructor)\n";
-    *this = F;
 }
 
 DiamondTrap::~DiamondTrap()

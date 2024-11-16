@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:19:35 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 19:30:03 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:22:57 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ ScavTrap::ScavTrap() : ClapTrap()
     std::cout << "ScavTrap " + name + " is ready for action\n";
     energyPoints = 50;
     attackDamage = 20;
-    std::cout << "ScavTrap's EnergyPoints : " << std::to_string(energyPoints) << "\n";
-
 }
 
 ScavTrap::ScavTrap(const std::string& _name) : ClapTrap(_name)
@@ -70,4 +68,9 @@ void        ScavTrap::attack(const std::string& target)
     }
     else
         std::cout << "ScavTrap " + name + " is dead\n";
+}
+
+unsigned int ScavTrap::getEp(void) const
+{
+    return (50);
 }

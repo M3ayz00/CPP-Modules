@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:48:20 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/15 17:16:35 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:00:18 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ class   FragTrap : virtual public ClapTrap
         void        attack(const std::string& target);
         void        highFivesGuys(void) const;
         void        guardGate() const;
+
+        unsigned int    getHp(void) const;
+        unsigned int    getAd(void) const;
 };
 
 #endif
