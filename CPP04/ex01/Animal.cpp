@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:47:55 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 16:33:31 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:01:50 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Animal& Animal::operator=(const Animal& A)
     if (this != &A)
     {
         std::cout << "Animal assignment copy operator called\n";
-        type = A.type;
+        setType(A.getType());
     }
     return (*this);
 }
@@ -30,8 +30,9 @@ Animal& Animal::operator=(const Animal& A)
 Animal::Animal(const Animal& A)
 {
     std::cout << "Animal Copy constructor called\n";
-    *this = A;
+    setType(A.getType());
 }
+
 
 Animal::~Animal()
 {
@@ -47,4 +48,16 @@ void    Animal::makeSound() const
 const std::string& Animal::getType() const
 {
     return (type);
+}
+
+void    Animal::setType(const std::string& _type)
+{
+    type = _type;
+}
+
+std::string to_string(int nb)
+{
+    std::ostringstream ss;
+    ss << nb;
+    return ss.str();
 }

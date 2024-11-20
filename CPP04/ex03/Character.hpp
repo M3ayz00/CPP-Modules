@@ -20,6 +20,7 @@ class Character : public ICharacter
     private:
         std::string name;
         AMateria*   slot[4];
+        AMateria*   toRecover[4];
 
     public:
         Character();
@@ -31,6 +32,8 @@ class Character : public ICharacter
         void                unequip(int idx);
         void                use(int idx, ICharacter& target);
         std::string const&  getName() const;
+
+        bool inSlots(AMateria *a);
 };
 
 

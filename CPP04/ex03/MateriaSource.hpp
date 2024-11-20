@@ -29,6 +29,7 @@ class   MateriaSource : public IMateriaSource
         
         void        learnMateria(AMateria* A);
         AMateria*   createMateria(std::string const & type);
+        bool        inSlots(AMateria *a);
 };
 
 #endif

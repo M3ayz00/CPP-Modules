@@ -12,31 +12,30 @@
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : type("default")
 {
     std::cout << "AMateria default constructor called\n";
 }
 
-AMateria::AMateria(std::string const& type) : _type(type)
+AMateria::AMateria(std::string const& _type) : type(_type)
 {
     std::cout << "AMateria constructor called\n";
 }
-
     
 AMateria&   AMateria::operator=(const AMateria& A)
 {
     if (this != &A)
     {
         std::cout << "AMateria assignment copy operator called\n";
-        _type = A._type;
+        setType(A.getType());
     }
     return (*this);
 }
 
 AMateria::AMateria(const AMateria& A)
 {
-    *this = A;
     std::cout << "AMateria copy constructor called\n";
+    setType(A.getType());
 }
 
 AMateria::~AMateria()
@@ -49,7 +48,12 @@ void AMateria::use(ICharacter& target)
     std::cout << "...\n" + target.getName();
 }
 
-std::string const& AMateria::getType() const
+const std::string& AMateria::getType() const
 {
-    return (_type);
+    return (type);
+}
+
+void    AMateria::setType( std::string const& _type)
+{
+    type = _type;
 }

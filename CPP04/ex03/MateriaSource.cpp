@@ -21,6 +21,7 @@ MateriaSource::MateriaSource()
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& M)
 {
+    std::cout << "MateriaSource assignment copy operator called\n";
     if (this != &M)
     {
         for (int i = 0; i < 4; i++)
@@ -31,7 +32,6 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& M)
             else
                 materia[i] = NULL;
         }
-        std::cout << "MateriaSource assignment copy operator called\n";
     }
     return (*this);
 }
@@ -39,7 +39,14 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& M)
 MateriaSource::MateriaSource(const MateriaSource& M)
 {
     std::cout << "MateriaSource copy constructor called\n";
-    *this = M;
+    for (int i = 0; i < 4; i++)
+    {
+        delete materia[i];
+        if (M.materia[i])
+            materia[i] = M.materia[i]->clone();
+        else
+            materia[i] = NULL;
+    }
 }
 
 MateriaSource::~MateriaSource()
@@ -54,27 +61,33 @@ void    MateriaSource::learnMateria(AMateria* A)
 {
     for (int i = 0; (A && i < 4); i++)
     {
-        if (materia[i] != NULL)
-            continue ;
-        materia[i] = A;
-        break ;
+        if (materia[i] == NULL)
+        {
+            if (inSlots(A))
+                materia[i] = A->clone();
+            else
+                materia[i] = A;
+            break ;
+        }
     }
 }
 
 AMateria*   MateriaSource::createMateria(std::string const & type)
 {
-    if (type.empty())
-        return (0);
-    AMateria*   M;
-    M = 0;
     for (int i = 3; i >= 0; i--)
     {
         if (materia[i] != NULL && materia[i]->getType() == type)
-        {
-            M = materia[i]->clone();
-            return (M);
-        }
+            return (materia[i]->clone());
     }
     return (0);
 }
 
+bool MateriaSource::inSlots(AMateria *a)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if (materia[i] == a)
+            return (true);
+    }
+    return (false);
+}

@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:48:01 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 15:11:12 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:01:41 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ANIMAL_HPP
 
 #include <iostream>
+#include <sstream>
 
 class Animal
 {
@@ -24,12 +25,15 @@ class Animal
         Animal();
         Animal(const Animal& A);
         Animal& operator=(const Animal& A);
-
-        const std::string&  getType() const;
+        virtual ~Animal();
 
         virtual void        makeSound( void ) const;
-        virtual ~Animal();
+
+        const std::string&  getType() const;
+        void                setType(const std::string& _type);
 };
+
+std::string to_string(int nb);
 
 
 #endif

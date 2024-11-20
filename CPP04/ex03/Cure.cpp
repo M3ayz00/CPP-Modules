@@ -14,13 +14,14 @@
 
 Cure::Cure() : AMateria()
 {
-    _type = "cure";
     std::cout << "Cure default Constructor called\n";
+    setType("cure");
 }
 
 Cure::Cure(const Cure& C) : AMateria(C)
 {
     std::cout << "Cure copy constructor called\n";
+    setType(C.getType());
 }
 
 Cure::~Cure()
@@ -31,18 +32,15 @@ Cure::~Cure()
 
 Cure&   Cure::operator=(const Cure& C)
 {
+    std::cout << "Cure copy assignment operator called\n";
     if (this != &C)
-    {
-        AMateria::operator=(C);
-        std::cout << "Cure copy  called\n";
-    }
+        setType(C.getType());
     return (*this);
 }
 
 AMateria*   Cure::clone() const
 {
-    AMateria* materia = new Cure();
-    return (materia);
+    return (new Cure(*this));
 }
 
 void    Cure::use(ICharacter& target)

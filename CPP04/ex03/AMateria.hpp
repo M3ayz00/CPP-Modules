@@ -21,20 +21,23 @@ class   ICharacter;
 class   AMateria
 {
     protected   :
-        std::string _type;
+        std::string type;
 
     public      :
         AMateria();
-        AMateria(std::string const& type);
+        AMateria(std::string const& _type);
         AMateria(const AMateria& A);
         
-        AMateria&           operator=(const AMateria& A);
+        virtual ~AMateria();
+        
+        AMateria&   operator=(const AMateria& A);
 
         std::string const&  getType() const;
         
-        virtual             ~AMateria();
         virtual AMateria*   clone() const = 0;
         virtual void        use(ICharacter& target);
+
+        void    setType( const std::string& _type);
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:48:01 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/21 14:43:12 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:22:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ class Animal
         Animal();
         Animal(const Animal& A);
         Animal& operator=(const Animal& A);
-        ~Animal();
-
-        const std::string&  getType() const;
+        virtual ~Animal();
 
         virtual void        makeSound( void ) const;
+
+        const std::string&  getType() const;
+        void                setType(const std::string& _type);
 };
 
 
