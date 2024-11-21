@@ -12,10 +12,10 @@
 
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
     std::cout << "Dog default Constructor called\n";
-    type = "Dog";
+    setType("Dog");
     brain = new Brain;
 }
 

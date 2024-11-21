@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = Animals

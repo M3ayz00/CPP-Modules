@@ -12,10 +12,10 @@
 
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
     std::cout << "Cat default Constructor called\n";
-    type = "Cat";
+    setType("Cat");
     brain = new Brain;
 }
 

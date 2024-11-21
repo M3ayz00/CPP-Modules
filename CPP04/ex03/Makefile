@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp MateriaSource.cpp Character.cpp 
 OBJS = $(SRCS:.cpp=.o)
 NAME = Materias

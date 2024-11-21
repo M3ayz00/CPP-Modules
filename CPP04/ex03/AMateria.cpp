@@ -45,7 +45,8 @@ AMateria::~AMateria()
 
 void AMateria::use(ICharacter& target)
 {
-    std::cout << "...\n" + target.getName();
+    (void) target;
+    std::cout << "...\n";
 }
 
 const std::string& AMateria::getType() const

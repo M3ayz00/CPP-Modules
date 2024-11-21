@@ -38,10 +38,9 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& M)
 
 MateriaSource::MateriaSource(const MateriaSource& M)
 {
-    std::cout << "MateriaSource copy constructor called\n";
+    std::cout << "MateriaSource copy constructor called\n"; 
     for (int i = 0; i < 4; i++)
     {
-        delete materia[i];
         if (M.materia[i])
             materia[i] = M.materia[i]->clone();
         else
