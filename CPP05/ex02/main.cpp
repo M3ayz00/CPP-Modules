@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GradeTooLowException.hpp                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 14:38:43 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 16:07:29 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/22 14:52:22 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/11/24 19:24:10 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRADETOOLOWEXCEPTION
-#define GRADETOOLOWEXCEPTION
-
 #include "Bureaucrat.hpp"
-#include <iostream>
+#include "AForm.hpp"
 
-class GradeTooLowException : public std::exception
+int main()
 {
-    public  :
-        const char * what() const throw()
-        {
-            return ("Grade is too low.\n");
-        }
-};
-
-#endif
+  {
+    AForm simpleForm;
+    Bureaucrat BC("M3ayz00", 130);
+    BC.signForm(simpleForm);
+  }
+  {
+    AForm taxForm("Tax Form", 50, 30);
+    Bureaucrat BC1("Pixou", 10);
+    Bureaucrat BC2("Samatchi", 100);
+    BC1.signForm(taxForm);
+    BC1.signForm(taxForm);
+    BC2.signForm(taxForm);
+    BC2.signForm(taxForm);
+  }
+  return (0);
+}

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GradeTooHighException.hpp                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 14:35:49 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 16:07:31 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/10/22 14:52:22 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/11/24 19:19:36 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRADETOOHIGHEXCEPTION
-#define GRADETOOHIGHEXCEPTION
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-#include <iostream>
-
-class GradeTooHighException : public std::exception
+int main()
 {
-    public  :
-        const char * what() const throw()
-        {
-            return ("Grade is too high.\n");
-        }
-};
-
-#endif
+  {
+    Form simpleForm;
+    Bureaucrat BC("M3ayz00", 130);
+    BC.signForm(simpleForm);
+  }
+  {
+    Form taxForm("Tax Form", 50, 30);
+    Bureaucrat BC1("Pixou", 10);
+    Bureaucrat BC2("Samatchi", 100);
+    BC1.signForm(taxForm);
+    BC1.signForm(taxForm);
+    BC2.signForm(taxForm);
+    BC2.signForm(taxForm);
+  }
+  return (0);
+}

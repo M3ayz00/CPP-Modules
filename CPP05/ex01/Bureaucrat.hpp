@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:15:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/10/22 16:38:38 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:56:19 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <sstream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -38,6 +40,8 @@ class Bureaucrat
     Bureaucrat(const Bureaucrat& B);
     Bureaucrat& operator=(const Bureaucrat& B);
     ~Bureaucrat();
+
+    void  signForm(Form& F);
 
     const std::string&  getName() const;
     int                 getGrade() const;

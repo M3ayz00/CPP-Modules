@@ -14,107 +14,136 @@
 
 int main()
 {
-
-    Bureaucrat *B1 = new Bureaucrat[4];
-    for (int i = 0; i < 4; i++)
+  Bureaucrat *B1[4];
+  for (int i = 0; i < 4; i++)
+  {
+    if ((i + 1) % 2)
     {
-        if (i % 2)
+      try
+      {
+        B1[i] = new Bureaucrat("Police Officer", (i + 1) * 20);
+        try 
         {
-            try
-            {
-                B1[i] = Bureaucrat("Police Officer", i * 10);
-            }
-            catch (const GradeTooHighException& e)
-            {
-                std::cout << e.what() << std::endl;
-            }
-            catch (const GradeTooLowException &e)
-            {
-                std::cout << e.what() << std::endl;
-            }
-            std::cout << B1[i];
+          std::cout << B1[i];
+          B1[i]->decGrade();
+          std::cout << B1[i];
+          delete B1[i];
         }
-        else
+        catch (const Bureaucrat::GradeTooHighException& e)
         {
-            try
-            {
-                B1[i] = Bureaucrat("Fireman", i * 10);
-            }
-            catch (const GradeTooHighException& e)
-            {
-                std::cout << e.what() << std::endl;
-            }
-            catch (const GradeTooLowException &e)
-            {
-                std::cout << e.what() << std::endl;
-            }
-            std::cout << B1[i];
+          std::cout << e.what();
+          delete B1[i];
         }
+        catch (const Bureaucrat::GradeTooLowException &e)
+        {
+          std::cout << e.what();
+          delete B1[i];
+        }
+      }
+      catch (const Bureaucrat::GradeTooHighException& e)
+      {
+        std::cout << e.what();
+      }
+      catch (const Bureaucrat::GradeTooLowException &e)
+      {
+        std::cout << e.what();
+      }
     }
+    else
+    {
+      try
+      {
+        B1[i] = new Bureaucrat("Fireman", (i + 1) * 20);
+        try 
+        {
+          std::cout << B1[i];
+          B1[i]->incGrade();
+          std::cout << B1[i];
+          delete B1[i];
+        }
+        catch (const Bureaucrat::GradeTooHighException& e)
+        {
+          std::cout << e.what();
+          delete B1[i];
+        }
+        catch (const Bureaucrat::GradeTooLowException &e)
+        {
+          std::cout << e.what();
+          delete B1[i];
+        }
+      }
+      catch (const Bureaucrat::GradeTooHighException& e)
+      {
+        std::cout << e.what();
+      }
+      catch (const Bureaucrat::GradeTooLowException &e)
+      {
+        std::cout << e.what();
+      }
+    }
+  }
 
-    // Bureaucrat* B1;
-    // try
-    // {
-    //     B1 = new Bureaucrat("Police 0fficer", 2);
-    // }
-    // catch (const GradeTooHighException& e)
-    // {
-    //     std::cout<< e.what();
-    //     return (1);
-    // }
-    // catch (const GradeTooLowException& e)
-    // {
-    //     std::cout << e.what();
-    //     return (1);
-    // }
-    // std::cout << *B1;
-    // try
-    // {
-    //     B1->decGrade();
-    // }
-    // catch (const GradeTooLowException& e)
-    // {
-    //     std::cout << e.what();
-    //     return (1);
-    // }
-    // catch (const GradeTooHighException& e)
-    // {
-    //     std::cout<< e.what();
-    //     return (1);
-    // }
-    // std::cout << *B1;
-    // Bureaucrat* B2;
-    // try
-    // {
-    //     B2 = new Bureaucrat("Fireman", 1);
-    // }
-    // catch (const GradeTooHighException& e)
-    // {
-    //     std::cout<< e.what();
-    //     return (1);
-    // }
-    // catch (const GradeTooLowException& e)
-    // {
-    //     std::cout << e.what();
-    //     return (1);
-    // }
-    // std::cout << *B2;
-    // try
-    // {
-    //     B2->incGrade();
-    // }
-    // catch (const GradeTooLowException& e)
-    // {
-    //     std::cout << e.what();
-    //     return (1);
-    // }
-    // catch (const GradeTooHighException& e)
-    // {
-    //     std::cout << e.what();
-    //     return (1);
-    // }
-    // std::cout << *B2;
-    // delete B1;
-    // delete B2;
-    // return (0);
+    // ////////////////////////////////////////////////
+
+  Bureaucrat* B3;
+  try
+  {
+    B3 = new Bureaucrat("Police 0fficer", 150);
+    try
+    {
+      std::cout << *B3;
+      B3->decGrade();
+      std::cout << *B3;
+      delete B3;
+    }
+    catch (const Bureaucrat::GradeTooLowException& e)
+    {
+      std::cout << e.what();
+      delete B3;
+    }
+    catch (const Bureaucrat::GradeTooHighException& e)
+    {
+      std::cout<< e.what();
+      delete B3;
+    }
+  }
+  catch (const Bureaucrat::GradeTooHighException& e)
+  {
+    std::cout<< e.what();
+  }
+  catch (const Bureaucrat::GradeTooLowException& e)
+  {
+    std::cout << e.what();
+  }
+  Bureaucrat* B2;
+  try
+  {
+    B2 = new Bureaucrat("Fireman", -1);
+    try
+    {
+      std::cout << *B2;
+      B2->incGrade();
+      std::cout << *B2;
+      delete B2;
+    }
+    catch (const Bureaucrat::GradeTooLowException& e)
+    {
+      std::cout << e.what();
+      delete B2;
+    }
+    catch (const Bureaucrat::GradeTooHighException& e)
+    {
+      std::cout << e.what();
+      delete B2;
+    }
+  }
+  catch (const Bureaucrat::GradeTooHighException& e)
+  {
+    std::cout<< e.what();
+  }
+  catch (const Bureaucrat::GradeTooLowException& e)
+  {
+    std::cout << e.what();
+  }
+  return (0);
 }
