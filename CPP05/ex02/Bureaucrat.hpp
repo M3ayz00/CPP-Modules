@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:15:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/24 19:24:10 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 04:46:00 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ class Bureaucrat
     Bureaucrat& operator=(const Bureaucrat& B);
     ~Bureaucrat();
 
-    void  signForm(AForm& F);
+    void  signForm(AForm& form);
+    void  executeForm(AForm& form);
 
     const std::string&  getName() const;
     int                 getGrade() const;

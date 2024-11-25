@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/24 19:24:10 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 05:11:06 by m3ayz00          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
@@ -79,22 +79,41 @@ void    Bureaucrat::decGrade()
   grade++;
 }
 
-void  Bureaucrat::signAForm(AForm& F)
+void  Bureaucrat::signForm(AForm& form)
 {
-  if (F.getIsSigned() == false)
+  if (form.getIsSigned() == false)
   {
     try
     {
-      F.beSigned(*this);
-      std::cout << getName() << " signed " << F.getName() << std::endl;
+      form.beSigned(*this);
+      std::cout << getName() << " signed " << form.getName() << std::endl;
     }
     catch(const AForm::GradeTooLowException& e)
     {
-      std::cerr << getName() << " couldn't sign " << F.getName() << " because " <<  e.what();
+      std::cerr << getName() << " couldn't sign " << form.getName() << " because " <<  e.what();
     }
   }
   else
-    std::cout << F.getName() << " is already signed\n";
+    std::cout << form.getName() << " is already signed\n";
+}
+
+void  Bureaucrat::executeForm(AForm& form)
+{
+  if (form.getIsExecuted() == false)
+  {
+    try
+    {
+      form.execute(*this);
+      form.confirmExecution();
+      std::cout << getName() << " executed " << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << getName() << " couldn't execute " << form.getName() << " because " <<  e.what();
+    }
+  }
+  else
+    std::cout << form.getName() << " is already executed\n";
 }
 
 std::string to_string(int nb)

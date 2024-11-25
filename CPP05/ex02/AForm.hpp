@@ -22,25 +22,36 @@ class AForm
   private :
     const std::string name;
     bool              isSigned;
+    bool              isExecuted;
     const int         signGrade;
     const int         execGrade;
 
+  protected :
+    virtual void  executeAction() const = 0;
   public  :
     AForm();
     AForm(const AForm& F);
     AForm(const std::string& _name, const int _signGrade, const int _execGrade);
     AForm& operator=(const AForm& F);
-    ~AForm();
+    virtual   ~AForm();
 
     class GradeTooHighException : public Bureaucrat::GradeTooHighException{};
     class GradeTooLowException : public Bureaucrat::GradeTooLowException{};
-    
-    virtual void        beSigned(Bureaucrat& B) = 0;
+    class FormNotSigned : public std::exception
+    {
+      public  :
+        virtual const char * what() const throw();
+    };
+
+    void        execute(Bureaucrat& B);
+    void        beSigned(Bureaucrat& B);
 
     const std::string&  getName( void ) const;
     bool                getIsSigned( void ) const;
+    bool                getIsExecuted( void ) const;
     int                 getSignGrade( void ) const;
     int                 getExecGrade( void ) const;
+    void                confirmExecution( void );
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& F);

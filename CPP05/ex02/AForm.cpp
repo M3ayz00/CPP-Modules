@@ -11,14 +11,18 @@
 /* ************************************************************************** */
 
 #include "AForm.hpp"
-// #include "Bureaucrat.hpp"
 
-AForm::AForm() : name("Default Form"), isSigned(false), signGrade(100), execGrade(50)
+const char * AForm::FormNotSigned::what() const throw()
+{
+  return "Form is not signed\n";
+}
+
+AForm::AForm() : name("Default Form"), isSigned(false), isExecuted(false), signGrade(100), execGrade(50)
 {
   std::cout << "Form default constructor called\n";
 }
 
-AForm::AForm(const AForm& F) : name(F.name), isSigned(F.isSigned), signGrade(F.signGrade), execGrade(F.execGrade)
+AForm::AForm(const AForm& F) : name(F.name), isSigned(F.isSigned), isExecuted(F.isExecuted), signGrade(F.signGrade), execGrade(F.execGrade)
 {
   std::cout << "AForm copy constructor called\n";
   if (signGrade > 150)
@@ -32,16 +36,12 @@ AForm::AForm(const AForm& F) : name(F.name), isSigned(F.isSigned), signGrade(F.s
 }
 
 AForm::AForm(const std::string& _name, const int _signGrade, const int _execGrade) : 
-  name(_name), isSigned(false), signGrade(_signGrade), execGrade(_execGrade)
+  name(_name), isSigned(false), isExecuted(false), signGrade(_signGrade), execGrade(_execGrade)
 {
   std::cout << "AForm constructor called\n";
-  if (signGrade > 150)
+  if (signGrade > 150 || execGrade > 150)
     throw (GradeTooLowException());
-  else if (signGrade < 1)
-    throw (GradeTooHighException());
-  if (execGrade > 150)
-    throw (GradeTooLowException());
-  else if (execGrade < 1)
+  else if (signGrade < 1 || execGrade < 1)
     throw (GradeTooHighException());
 }
 
@@ -64,6 +64,15 @@ void  AForm::beSigned(Bureaucrat& B)
   isSigned = true;
 }
 
+void  AForm::execute(Bureaucrat& B)
+{
+  if (!isSigned)
+    throw (FormNotSigned());
+  if (B.getGrade() > getExecGrade())
+    throw(GradeTooLowException());
+  executeAction();
+}
+
 const std::string&  AForm::getName( void ) const
 {
   return (name);
@@ -74,6 +83,11 @@ bool  AForm::getIsSigned( void ) const
   return (isSigned);
 }
 
+bool  AForm::getIsExecuted( void ) const
+{
+  return (isExecuted);
+}
+
 int AForm::getSignGrade( void ) const
 {
   return (signGrade);
@@ -82,6 +96,11 @@ int AForm::getSignGrade( void ) const
 int AForm::getExecGrade( void ) const
 {
   return (execGrade);
+}
+
+void  AForm::confirmExecution( void )
+{
+  isExecuted = true;
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& F)
