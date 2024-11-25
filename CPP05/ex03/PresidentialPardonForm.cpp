@@ -6,14 +6,14 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 03:51:46 by m3ayz00           #+#    #+#             */
-/*   Updated: 2024/11/25 13:57:27 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:58:18 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 #include <fstream>
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("default", 25, 5), target("default")
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential pardon form", 25, 5), target("default")
 {
   std::cout << "PresidentialPardonForm Form default constructor called\n";
 }
@@ -45,3 +45,4 @@ void  PresidentialPardonForm::executeAction() const
 {
   std::cout << target << " has been pardoned by Zaphod Beeblebrox\n";
 }
+

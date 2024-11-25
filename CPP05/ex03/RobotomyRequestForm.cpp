@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 03:51:46 by m3ayz00           #+#    #+#             */
-/*   Updated: 2024/11/25 14:17:15 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:59:23 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <ctime>
 #include <fstream>
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45), target("default")
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy request form", 72, 45), target("default")
 {
   std::cout << "RobotomyRequestForm Form default constructor called\n";
 }
@@ -52,3 +52,4 @@ void  RobotomyRequestForm::executeAction() const
   else
     std::cout << "The robotomy has failed for " << target << std::endl;
 }
+

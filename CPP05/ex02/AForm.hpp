@@ -42,13 +42,23 @@ class AForm
       public  :
         virtual const char * what() const throw();
     };
+    class FormAlreadySigned : public std::exception
+    {
+      public  :
+        virtual const char * what() const throw();
+    };
+    class FormAlreadyExecuted : public std::exception
+    {
+      public  :
+        virtual const char * what() const throw();
+    };
 
     void        execute(Bureaucrat& B);
     void        beSigned(Bureaucrat& B);
 
     const std::string&  getName( void ) const;
-    bool                getIsSigned( void ) const;
-    bool                getIsExecuted( void ) const;
+    bool                getSignatureState( void ) const;
+    bool                getExecutionState( void ) const;
     int                 getSignGrade( void ) const;
     int                 getExecGrade( void ) const;
     void                confirmExecution( void );

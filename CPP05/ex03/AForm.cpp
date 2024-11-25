@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 const char * AForm::FormNotSigned::what() const throw()
 {
@@ -125,4 +128,19 @@ std::ostream& operator<<(std::ostream& os, const AForm& F)
       << "Is signed : \n" << std::boolalpha << F.getSignatureState()
       << std::endl;
   return (os);
+}
+
+AForm*  createPresidentialPardonForm(const std::string& _target)
+{
+  return new PresidentialPardonForm(_target);
+}
+
+AForm*  createShrubberyCreationForm(const std::string& _target)
+{
+  return new ShrubberyCreationForm(_target);
+}
+
+AForm*  createRobotomyRequestForm(const std::string& _target)
+{
+  return new RobotomyRequestForm(_target);
 }

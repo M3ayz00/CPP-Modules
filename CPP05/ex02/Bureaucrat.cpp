@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: m3ayz00 <m3ayz00@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 05:11:06 by m3ayz00          ###   ########.fr       */
+/*   Updated: 2024/11/25 17:06:52 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
-  return "Grade is too high.\n";
+  return "grade is too high.\n";
 }
 
 const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
-  return "Grade is too low.\n";
+  return "grade is too low.\n";
 }
 
 Bureaucrat::Bureaucrat() : name("default"), grade(50)
@@ -81,39 +81,29 @@ void    Bureaucrat::decGrade()
 
 void  Bureaucrat::signForm(AForm& form)
 {
-  if (form.getIsSigned() == false)
+  try
   {
-    try
-    {
-      form.beSigned(*this);
-      std::cout << getName() << " signed " << form.getName() << std::endl;
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-      std::cerr << getName() << " couldn't sign " << form.getName() << " because " <<  e.what();
-    }
+    form.beSigned(*this);
+    std::cout << getName() << " signed " << form.getName() << std::endl;
   }
-  else
-    std::cout << form.getName() << " is already signed\n";
+  catch(const std::exception& e)
+  {
+    std::cerr << getName() << " couldn't sign " << form.getName() << " because " <<  e.what();
+  }
 }
 
 void  Bureaucrat::executeForm(AForm& form)
 {
-  if (form.getIsExecuted() == false)
+  try
   {
-    try
-    {
-      form.execute(*this);
-      form.confirmExecution();
-      std::cout << getName() << " executed " << form.getName() << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-      std::cerr << getName() << " couldn't execute " << form.getName() << " because " <<  e.what();
-    }
+    form.execute(*this);
+    form.confirmExecution();
+    std::cout << getName() << " executed " << form.getName() << std::endl;
   }
-  else
-    std::cout << form.getName() << " is already executed\n";
+  catch(const std::exception& e)
+  {
+    std::cerr << getName() << " couldn't execute " << form.getName() << " because " <<  e.what();
+  }
 }
 
 std::string to_string(int nb)

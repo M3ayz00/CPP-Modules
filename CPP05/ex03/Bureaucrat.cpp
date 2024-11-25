@@ -6,20 +6,21 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 16:29:31 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:11:03 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
-  return "Grade is too high.\n";
+  return "grade is too high.\n";
 }
 
 const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
-  return "Grade is too low.\n";
+  return "grade is too low.\n";
 }
 
 Bureaucrat::Bureaucrat() : name("default"), grade(50)
@@ -78,11 +79,38 @@ void    Bureaucrat::decGrade()
   grade++;
 }
 
+void  Bureaucrat::signForm(AForm& form)
+{
+  try
+  {
+    form.beSigned(*this);
+    std::cout << getName() << " signed " << form.getName() << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << getName() << " couldn't sign " << form.getName() << " because " <<  e.what();
+  }
+}
+
+void  Bureaucrat::executeForm(AForm& form)
+{
+  try
+  {
+    form.execute(*this);
+    form.confirmExecution();
+    std::cout << getName() << " executed " << form.getName() << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << getName() << " couldn't execute " << form.getName() << " because " <<  e.what();
+  }
+}
+
 std::string to_string(int nb)
 {
-  std::ostringstream ss;
-  ss << nb;
-  return ss.str();
+  std::ostringstream oss;
+  oss << nb;
+  return oss.str();
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& B)

@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/24 19:20:33 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:40:01 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,15 @@ void    Bureaucrat::decGrade()
 
 void  Bureaucrat::signForm(Form& F)
 {
-  if (F.getIsSigned() == false)
+  try
   {
-    try
-    {
-      F.beSigned(*this);
-      std::cout << getName() << " signed " << F.getName() << std::endl;
-    }
-    catch(const Form::GradeTooLowException& e)
-    {
-      std::cerr << getName() << " couldn't sign " << F.getName() << " because " <<  e.what();
-    }
+    F.beSigned(*this);
+    std::cout << getName() << " signed " << F.getName() << std::endl;
   }
-  else
-    std::cout << F.getName() << " is already signed\n";
+  catch(const std::exception& e)
+  {
+    std::cerr << getName() << " couldn't sign " << F.getName() << " because " <<  e.what();
+  }
 }
 
 std::string to_string(int nb)

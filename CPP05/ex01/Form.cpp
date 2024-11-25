@@ -6,12 +6,16 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:04:50 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/24 19:14:08 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:39:37 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-// #include "Bureaucrat.hpp"
+
+const char * Form::FormAlreadySigned::what() const throw()
+{
+  return "form is already signed\n";
+}
 
 Form::Form() : name("Default Form"), isSigned(false), signGrade(100), execGrade(50)
 {
@@ -59,6 +63,8 @@ Form::~Form()
 
 void  Form::beSigned(Bureaucrat& B)
 {
+  if (isSigned == true)
+    throw (FormAlreadySigned());
   if (B.getGrade() > getSignGrade())
     throw (GradeTooLowException());
   isSigned = true;
@@ -69,7 +75,7 @@ const std::string&  Form::getName( void ) const
   return (name);
 }
 
-bool  Form::getIsSigned( void ) const
+bool  Form::getSignatureState( void ) const
 {
   return (isSigned);
 }
@@ -89,7 +95,7 @@ std::ostream& operator<<(std::ostream& os, const Form& F)
   os  << "Name : " <<  F.getName()
       << "\nSign grade : " << F.getSignGrade()
       << "\nExecution grade : " << F.getExecGrade()
-      << "Is signed : \n" << std::boolalpha << F.getIsSigned()
+      << "Is signed : \n" << std::boolalpha << F.getSignatureState()
       << std::endl;
   return (os);
 }
