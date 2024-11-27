@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:15:32 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/24 18:56:19 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:26:19 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ class Bureaucrat
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& B);
-std::ostream& operator<<(std::ostream& os, Bureaucrat* B);
 std::string to_string(int nb);
 
 

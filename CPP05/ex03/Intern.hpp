@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:39:21 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 15:59:47 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:55:11 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ class Intern
     Intern& operator=(const Intern& I);
 
     AForm*  makeForm(std::string formName, std::string formTarget);
+
+    static AForm*       createShrubberyCreationForm(const std::string& _target);
+    static AForm*       createRobotomyRequestForm(const std::string& _target);
+    static AForm*       createPresidentialPardonForm(const std::string& _target);
 };
 
 #endif

@@ -72,22 +72,23 @@ AForm::~AForm()
 
 void  AForm::beSigned(Bureaucrat& B)
 {
-  if (isSigned == true)
-    throw (FormAlreadySigned());
   if (B.getGrade() > getSignGrade())
     throw (GradeTooLowException());
+  if (isSigned == true)
+    throw (FormAlreadySigned());
   isSigned = true;
 }
 
 void  AForm::execute(Bureaucrat& B)
 {
-  if (isExecuted)
-    throw (FormAlreadyExecuted());
-  if (!isSigned)
-    throw (FormNotSigned());
   if (B.getGrade() > getExecGrade())
     throw (GradeTooLowException());
+  if (!isSigned)
+    throw (FormNotSigned());
+  if (isExecuted)
+    throw (FormAlreadyExecuted());
   executeAction();
+  isExecuted = true;
 }
 
 const std::string&  AForm::getName( void ) const
@@ -115,32 +116,21 @@ int AForm::getExecGrade( void ) const
   return (execGrade);
 }
 
-void  AForm::confirmExecution( void )
-{
-  isExecuted = true;
-}
-
 std::ostream& operator<<(std::ostream& os, const AForm& F)
 {
-  os  << "Name : " <<  F.getName()
-      << "\nSign grade : " << F.getSignGrade()
-      << "\nExecution grade : " << F.getExecGrade()
-      << "Is signed : \n" << std::boolalpha << F.getSignatureState()
-      << std::endl;
+  os  << "\n    Name : " <<  F.getName()
+      << "\n    Sign grade : " << F.getSignGrade()
+      << "\n    Execution grade : " << F.getExecGrade()
+      << "\n    Is signed : ";
+  if (F.getSignatureState() == true)
+    os << "yes";
+  else
+    os << "no";
+  os << "\n    Is executed : ";
+  if (F.getExecutionState() == true)
+    os << "yes\n\n";
+  else
+    os << "no\n\n";
   return (os);
 }
 
-AForm*  createPresidentialPardonForm(const std::string& _target)
-{
-  return new PresidentialPardonForm(_target);
-}
-
-AForm*  createShrubberyCreationForm(const std::string& _target)
-{
-  return new ShrubberyCreationForm(_target);
-}
-
-AForm*  createRobotomyRequestForm(const std::string& _target)
-{
-  return new RobotomyRequestForm(_target);
-}

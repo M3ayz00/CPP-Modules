@@ -35,14 +35,6 @@ AForm::AForm() : name("Default Form"), isSigned(false), isExecuted(false), signG
 AForm::AForm(const AForm& F) : name(F.name), isSigned(F.isSigned), isExecuted(F.isExecuted), signGrade(F.signGrade), execGrade(F.execGrade)
 {
   std::cout << "AForm copy constructor called\n";
-  if (signGrade > 150)
-    throw (GradeTooLowException());
-  else if (signGrade < 1)
-    throw (GradeTooHighException());
-  if (execGrade > 150)
-    throw (GradeTooLowException());
-  else if (execGrade < 1)
-    throw (GradeTooHighException());
 }
 
 AForm::AForm(const std::string& _name, const int _signGrade, const int _execGrade) : 
@@ -69,22 +61,23 @@ AForm::~AForm()
 
 void  AForm::beSigned(Bureaucrat& B)
 {
-  if (isSigned == true)
-    throw (FormAlreadySigned());
   if (B.getGrade() > getSignGrade())
     throw (GradeTooLowException());
+  if (isSigned == true)
+    throw (FormAlreadySigned());
   isSigned = true;
 }
 
 void  AForm::execute(Bureaucrat& B)
 {
-  if (isExecuted)
-    throw (FormAlreadyExecuted());
-  if (!isSigned)
-    throw (FormNotSigned());
   if (B.getGrade() > getExecGrade())
     throw (GradeTooLowException());
+  if (!isSigned)
+    throw (FormNotSigned());
+  if (isExecuted)
+    throw (FormAlreadyExecuted());
   executeAction();
+  isExecuted = true;
 }
 
 const std::string&  AForm::getName( void ) const
@@ -112,17 +105,20 @@ int AForm::getExecGrade( void ) const
   return (execGrade);
 }
 
-void  AForm::confirmExecution( void )
-{
-  isExecuted = true;
-}
-
 std::ostream& operator<<(std::ostream& os, const AForm& F)
 {
-  os  << "Name : " <<  F.getName()
-      << "\nSign grade : " << F.getSignGrade()
-      << "\nExecution grade : " << F.getExecGrade()
-      << "Is signed : \n" << std::boolalpha << F.getSignatureState()
-      << std::endl;
+  os  << "\n    Name : " <<  F.getName()
+      << "\n    Sign grade : " << F.getSignGrade()
+      << "\n    Execution grade : " << F.getExecGrade()
+      << "\n    Is signed : ";
+  if (F.getSignatureState() == true)
+    os << "yes";
+  else
+    os << "no";
+  os << "\n    Is executed : ";
+  if (F.getExecutionState() == true)
+    os << "yes\n\n";
+  else
+    os << "no\n\n";
   return (os);
 }

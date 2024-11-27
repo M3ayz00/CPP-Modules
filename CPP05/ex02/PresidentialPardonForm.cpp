@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 03:51:46 by m3ayz00           #+#    #+#             */
-/*   Updated: 2024/11/25 13:57:27 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:39:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 
 PresidentialPardonForm::PresidentialPardonForm() : AForm("default", 25, 5), target("default")
 {
-  std::cout << "PresidentialPardonForm Form default constructor called\n";
+  std::cout << "PresidentialPardonForm default constructor called\n";
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& _target) : AForm("Presidential pardon form", 25, 5), target(_target)
 {
-  std::cout << "PresidentialPardonForm Form constructor called\n";
+  std::cout << "PresidentialPardonForm constructor called\n";
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& PPF) : AForm(PPF.getName(), PPF.getSignGrade(), PPF.getExecGrade()), target(PPF.target)
 {
-  std::cout << "PresidentialPardonForm Form copy constructor called\n";
+  std::cout << "PresidentialPardonForm copy constructor called\n";
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-  std::cout << "PresidentialPardonForm Form destructor called\n";
+  std::cout << "PresidentialPardonForm destructor called\n";
 }
 
 PresidentialPardonForm&  PresidentialPardonForm::operator=(const PresidentialPardonForm& PPF)
 {
-  std::cout << "PresidentialPardonForm Form assignment operator called\n";
+  std::cout << "PresidentialPardonForm assignment operator called\n";
   if (this != &PPF)
     target = PPF.target; 
   return (*this);

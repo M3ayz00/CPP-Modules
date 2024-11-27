@@ -61,7 +61,6 @@ class AForm
     bool                getExecutionState( void ) const;
     int                 getSignGrade( void ) const;
     int                 getExecGrade( void ) const;
-    void                confirmExecution( void );
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& F);

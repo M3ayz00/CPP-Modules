@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 16:29:31 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:25:12 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& B)
   return (*this);
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& B) : name (B.name), grade(B.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat& B) : name(B.name), grade(B.grade)
 {
   std::cout << "Bureaucrat copy constructor called\n";
 }
@@ -88,11 +88,5 @@ std::string to_string(int nb)
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& B)
 {
   os << B.getName() << ", bureaucrat grade " << to_string(B.getGrade()) + ".\n";
-  return (os);
-}
-
-std::ostream& operator<<(std::ostream& os, Bureaucrat* B)
-{
-  os << B->getName() << ", bureaucrat grade " << to_string(B->getGrade()) + ".\n";
   return (os);
 }

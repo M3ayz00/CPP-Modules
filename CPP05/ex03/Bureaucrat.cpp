@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 17:11:03 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:27:21 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Bureaucrat::Bureaucrat() : name("default"), grade(50)
   std::cout << "Bureaucrat default constructor called\n";   
 }
 
-Bureaucrat::Bureaucrat(const std::string& _name, int _grade) : name(_name) , grade(_grade)
+Bureaucrat::Bureaucrat(const std::string& _name, int _grade) : name(_name) , grade(_grade) 
 {
   std::cout << "Bureaucrat constructor called\n";
   if (grade > 150)
@@ -97,7 +97,6 @@ void  Bureaucrat::executeForm(AForm& form)
   try
   {
     form.execute(*this);
-    form.confirmExecution();
     std::cout << getName() << " executed " << form.getName() << std::endl;
   }
   catch(const std::exception& e)

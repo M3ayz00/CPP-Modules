@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 18:04:50 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 16:39:37 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:12:16 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ Form::Form() : name("Default Form"), isSigned(false), signGrade(100), execGrade(
 Form::Form(const Form& F) : name(F.name), isSigned(F.isSigned), signGrade(F.signGrade), execGrade(F.execGrade)
 {
   std::cout << "Form copy constructor called\n";
-  if (signGrade > 150)
-    throw (GradeTooLowException());
-  else if (signGrade < 1)
-    throw (GradeTooHighException());
-  if (execGrade > 150)
-    throw (GradeTooLowException());
-  else if (execGrade < 1)
-    throw (GradeTooHighException());
 }
 
 Form::Form(const std::string& _name, const int _signGrade, const int _execGrade) : 
@@ -51,6 +43,7 @@ Form::Form(const std::string& _name, const int _signGrade, const int _execGrade)
 
 Form& Form::operator=(const Form& F)
 {
+  std::cout << "Form assignment operator called\n";
   if (this != &F)
     isSigned = F.isSigned;
   return (*this);
@@ -63,10 +56,10 @@ Form::~Form()
 
 void  Form::beSigned(Bureaucrat& B)
 {
-  if (isSigned == true)
-    throw (FormAlreadySigned());
   if (B.getGrade() > getSignGrade())
     throw (GradeTooLowException());
+  if (isSigned == true)
+    throw (FormAlreadySigned());
   isSigned = true;
 }
 
@@ -92,10 +85,13 @@ int Form::getExecGrade( void ) const
 
 std::ostream& operator<<(std::ostream& os, const Form& F)
 {
-  os  << "Name : " <<  F.getName()
-      << "\nSign grade : " << F.getSignGrade()
-      << "\nExecution grade : " << F.getExecGrade()
-      << "Is signed : \n" << std::boolalpha << F.getSignatureState()
-      << std::endl;
+  os  << "\n    Name : " <<  F.getName()
+      << "\n    Sign grade : " << F.getSignGrade()
+      << "\n    Execution grade : " << F.getExecGrade()
+      << "\n    Is signed : ";
+  if (F.getSignatureState() == true)
+    os << "yes\n\n";
+  else
+    os << "no\n\n";
   return (os);
 }

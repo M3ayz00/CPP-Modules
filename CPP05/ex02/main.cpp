@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:52:22 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 17:09:06 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:21:19 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,60 @@
 int main()
 {
   {
-    ShrubberyCreationForm simpleForm("home");
-    Bureaucrat BC("M3ayz00", 130);
-    BC.signForm(simpleForm);
-    BC.executeForm(simpleForm);
+    try
+    {
+      ShrubberyCreationForm simpleForm("home");
+      std::cout << simpleForm;
+      Bureaucrat BC("M3ayz00", 130);
+      BC.signForm(simpleForm);
+      std::cout << simpleForm;
+      BC.executeForm(simpleForm);
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
   }
   {
-    PresidentialPardonForm ppForm("cirminal");
-    Bureaucrat BC1("Pixou", 1);
-    Bureaucrat BC2("Samatchi", 100);
-    BC1.signForm(ppForm);
-    BC1.signForm(ppForm);
-    BC1.executeForm(ppForm);
-    BC1.executeForm(ppForm);
-    BC2.executeForm(ppForm);
-    BC2.signForm(ppForm);
-    BC2.signForm(ppForm);
-    BC2.executeForm(ppForm);
+    try
+    {
+      PresidentialPardonForm ppForm("criminal");
+      std::cout << ppForm;
+      Bureaucrat BC1("Rashford", 1);
+      Bureaucrat BC2("Ferguson", 100);
+      BC1.signForm(ppForm);
+      std::cout << ppForm;
+      BC1.signForm(ppForm);
+      std::cout << ppForm;
+      BC1.executeForm(ppForm);
+      BC1.executeForm(ppForm);
+      BC2.executeForm(ppForm);
+      BC2.signForm(ppForm);
+      std::cout << ppForm;
+      BC2.signForm(ppForm);
+      std::cout << ppForm;
+      BC2.executeForm(ppForm);
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
   }
   {
-    RobotomyRequestForm rrForm("apah");
-    Bureaucrat BC("atah", 2);
-    BC.signForm(rrForm);
-    BC.executeForm(rrForm);
+    try
+    {
+      RobotomyRequestForm rrForm("Constantine");
+      std::cout << rrForm;
+      Bureaucrat BC("VegaPunk", 2);
+      BC.signForm(rrForm);
+      std::cout << rrForm;
+      BC.executeForm(rrForm);
+      std::cout << rrForm;
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
   }
   return (0);
 }

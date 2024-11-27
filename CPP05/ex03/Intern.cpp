@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:39:18 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 16:17:39 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:55:52 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ Intern& Intern::operator=(const Intern& I)
   (void)I;
   std::cout << "Intern assignment operator called\n";
   return (*this);
+}
+
+AForm*  Intern::createPresidentialPardonForm(const std::string& _target)
+{
+  return new PresidentialPardonForm(_target);
+}
+
+AForm*  Intern::createShrubberyCreationForm(const std::string& _target)
+{
+  return new ShrubberyCreationForm(_target);
+}
+
+AForm*  Intern::createRobotomyRequestForm(const std::string& _target)
+{
+  return new RobotomyRequestForm(_target);
 }
 
 AForm*  Intern::makeForm(std::string formName, std::string formTarget)

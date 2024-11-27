@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 16:40:01 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:26:15 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,5 @@ std::string to_string(int nb)
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& B)
 {
   os << B.getName() << ", bureaucrat grade " << to_string(B.getGrade()) + ".\n";
-  return (os);
-}
-
-std::ostream& operator<<(std::ostream& os, Bureaucrat* B)
-{
-  os << B->getName() << ", bureaucrat grade " << to_string(B->getGrade()) + ".\n";
   return (os);
 }

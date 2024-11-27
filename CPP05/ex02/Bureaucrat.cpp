@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:16:37 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/25 17:06:52 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:01:22 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void  Bureaucrat::executeForm(AForm& form)
   try
   {
     form.execute(*this);
-    form.confirmExecution();
     std::cout << getName() << " executed " << form.getName() << std::endl;
   }
   catch(const std::exception& e)
