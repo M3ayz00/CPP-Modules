@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:52:56 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/28 14:00:59 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/29 15:22:11 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,18 @@
 class ScalarConverter
 {
   private :
-    static int hasDecimal(const std::string& arg, char c);
-    static int isDigit(const std::string& arg);
+    static int   isDigit(const std::string& literal);
+    static int   isSpecialDouble(const std::string& literal);
+    static int   isSpecialFloat(const std::string& literal);
+    static bool  isInt(const std::string& literal);
+    static bool  isChar(const std::string& literal);
+    static bool  isFloat(const std::string& literal);
+    static bool  isDouble(const std::string& literal);
+    static void  printChar(double value);
+    static void  printInt(double value);
+    static void  printDouble(double value);
+    static void  printFloat(double value);
+    static void  convert(const std::string& literal);
 
   public  :
     ScalarConverter();
@@ -29,7 +39,6 @@ class ScalarConverter
     ~ScalarConverter();
     ScalarConverter&  operator=(const ScalarConverter& S);
   
-    static void  convert(const std::string &literal);
 };
 
 #endif
