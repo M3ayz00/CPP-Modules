@@ -6,19 +6,18 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 16:17:51 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 16:52:09 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:00:33 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 #include <ctime>
 #include <cstdlib>
 
 Base::~Base(){}
-Base::Base(){}
-A::A(){}
-B::B(){}
-C::C(){}
 
 Base* generate(void)
 {

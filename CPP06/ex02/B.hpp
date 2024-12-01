@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 16:15:34 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 16:59:05 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/12/01 16:57:20 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/12/01 16:59:00 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef B_HPP
+#define B_HPP
 
-#include <iostream>
+#include "Base.hpp"
 
-class Base
-{
-  public:
-    virtual ~Base();
+class B : public Base {
+
 };
-
-Base* generate(void);
-void  identify(Base* p);
-void  identify(Base& p);
 
 #endif

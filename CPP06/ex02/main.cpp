@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 16:38:38 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 16:39:05 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:03:05 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int main()
 {
-  identify(generate());
+  Base *p = generate();
+  Base &r  = *p;
+  identify(p);
+  identify(r);
 }
