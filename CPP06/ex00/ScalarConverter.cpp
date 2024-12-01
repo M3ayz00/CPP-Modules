@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:28 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 14:48:40 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/12/01 15:11:16 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ bool ScalarConverter::isDouble(const std::string& literal)
   size_t  pos = literal.find("f");
   if (pos != std::string::npos) return (0);
   pos = literal.find(".");
-  if (pos == std::string::npos || pos == 0 || pos == literal.length() - 1) return (0);
+  if (pos == 0 || pos == literal.length() - 1) return (0);
   pos = literal.find(".", pos + 1);
   if (pos != std::string::npos) return (0);
   char *end;
   std::strtod(literal.c_str(), &end);
-  return (*end == '\0');
+  return (*end == '\0' || *end == 'e');
 }
 
 void  ScalarConverter::printChar(double value)
@@ -88,7 +88,7 @@ void  ScalarConverter::printChar(double value)
 void  ScalarConverter::printInt(double value)
 {
   std::cout << "int: ";
-  if (std::isnan(value) || std::isinf(value) || value > INT_MAX || value < INT_MIN)  
+  if (std::isnan(value) || std::isinf(value) || value > INT_MAX || value < INT_MIN)
     std::cout << "impossible\n";
   else
     std::cout << static_cast<int>(value) << "\n";
@@ -96,24 +96,36 @@ void  ScalarConverter::printInt(double value)
 
 void  ScalarConverter::printDouble(double value)
 {
+  bool  tolerance = (fabs(value - static_cast<int>(value)) < 1e-6);
   std::cout << "double: ";
   if (std::isnan(value))  
     std::cout << "nan\n";
   else if (std::isinf(value))
     std::cout << (std::signbit(value) ? "-inf\n" : "+inf\n"); 
   else
-    std::cout << std::fixed << value << "\n";
+  {
+    if (tolerance)
+      std::cout << value << ".0\n";
+    else
+      std::cout << std::fixed << value << "\n";
+  }
 }
 
 void  ScalarConverter::printFloat(double value)
 {
+  bool  tolerance = (fabs(value - static_cast<int>(value)) < 1e-6);
   std::cout << "float: ";
-  if (std::isnan(static_cast<float>(value)))  
+  if (std::isnan(static_cast<float>(value)))
     std::cout << "nanf\n";
   else if (std::isinf(static_cast<float>(value)))
     std::cout << (std::signbit(value) ? "-inff\n" : "+inff\n");
   else
-    std::cout << std::fixed << value << "f\n";
+  {
+    if (tolerance)
+      std::cout << value << ".0f\n";
+    else
+      std::cout << std::fixed << value << "f\n";
+  }
 }
 
 bool  ScalarConverter::isDigit(const std::string& literal)
