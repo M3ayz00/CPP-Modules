@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:04:30 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/11/29 15:19:08 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:55:46 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int main(int ac, char **av)
     std::cerr << "Usage : ./convert [parameter]\n";
     return (1);
   }
-  convert(std::string(av[1]));
+  ScalarConverter::convert(std::string(av[1]));
 }
