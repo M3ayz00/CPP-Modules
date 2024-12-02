@@ -6,7 +6,7 @@
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:28 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 15:11:16 by msaadidi         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:47:45 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool ScalarConverter::isInt(const std::string& literal)
 {
   char *end;
   std::strtol(literal.c_str(), &end, 10);
-  return ((*end == '\0'));
+  return (*end == '\0');
 }
 
 bool ScalarConverter::isChar(const std::string& literal)
@@ -56,6 +56,9 @@ bool ScalarConverter::isFloat(const std::string& literal)
 {
   size_t  pos = literal.find("f");
   if (pos == std::string::npos || pos != literal.length() - 1) return (0);
+  pos = literal.find(".");
+  if (pos != std::string::npos)
+    if (pos == 0 || pos == literal.length() - 1 || !std::isdigit(literal[pos - 1]) || !std::isdigit(literal[pos + 1])) return (0);
   char *end;
   std::strtof(literal.c_str(), &end);
   return (*end == 'f' && std::isdigit(*(end - 1)));
@@ -65,13 +68,16 @@ bool ScalarConverter::isDouble(const std::string& literal)
 {
   size_t  pos = literal.find("f");
   if (pos != std::string::npos) return (0);
+  pos = literal.find("e");
+  if (pos != std::string::npos)
+    if (std::isdigit(literal[pos - 1]) && (((literal[pos + 1] == '+' || literal[pos + 1] == '-') && std::isdigit(literal[pos + 2])) || std::isdigit(literal[pos + 1]))) return (1);
   pos = literal.find(".");
-  if (pos == 0 || pos == literal.length() - 1) return (0);
+  if (pos == 0 || pos == literal.length() - 1 || !std::isdigit(literal[pos - 1]) || !std::isdigit(literal[pos + 1])) return (0);
   pos = literal.find(".", pos + 1);
   if (pos != std::string::npos) return (0);
-  char *end;
-  std::strtod(literal.c_str(), &end);
-  return (*end == '\0' || *end == 'e');
+  char *doubleEnd;
+  std::strtof(literal.c_str(), &doubleEnd);
+  return (*doubleEnd == '\0');
 }
 
 void  ScalarConverter::printChar(double value)
@@ -96,42 +102,33 @@ void  ScalarConverter::printInt(double value)
 
 void  ScalarConverter::printDouble(double value)
 {
-  bool  tolerance = (fabs(value - static_cast<int>(value)) < 1e-6);
+  bool  tolerance = (fmod(value, 1.0f) || value > 1e5);
   std::cout << "double: ";
   if (std::isnan(value))  
     std::cout << "nan\n";
   else if (std::isinf(value))
     std::cout << (std::signbit(value) ? "-inf\n" : "+inf\n"); 
   else
-  {
-    if (tolerance)
-      std::cout << value << ".0\n";
-    else
-      std::cout << std::fixed << value << "\n";
-  }
+    std::cout << value << (tolerance ? "\n" : ".0\n");
 }
+
 
 void  ScalarConverter::printFloat(double value)
 {
-  bool  tolerance = (fabs(value - static_cast<int>(value)) < 1e-6);
+  bool  tolerance = (fmod(static_cast<float>(value), 1.0f) || value > 1e5);
   std::cout << "float: ";
   if (std::isnan(static_cast<float>(value)))
     std::cout << "nanf\n";
   else if (std::isinf(static_cast<float>(value)))
     std::cout << (std::signbit(value) ? "-inff\n" : "+inff\n");
   else
-  {
-    if (tolerance)
-      std::cout << value << ".0f\n";
-    else
-      std::cout << std::fixed << value << "f\n";
-  }
+    std::cout << static_cast<float>(value) << (tolerance ? "f\n" : ".0f\n");
 }
 
 bool  ScalarConverter::isDigit(const std::string& literal)
 {
-  return (isInt(literal) || isFloat(literal)
-    || isDouble(literal) || isSpecialDouble(literal) || isSpecialFloat(literal));
+  return (isDouble(literal) || isInt(literal) || isFloat(literal)
+    || isSpecialDouble(literal) || isSpecialFloat(literal));
 }
 
 void  ScalarConverter::convert(const std::string& literal)
@@ -140,7 +137,7 @@ void  ScalarConverter::convert(const std::string& literal)
   if (isChar(literal))
     value = static_cast<double>(literal[0]);
   else if (isDigit(literal))
-    value = static_cast<double>(std::strtod(literal.c_str(), NULL));
+    value = std::strtod(literal.c_str(), NULL);
   else
   {
     std::cout << "Invalid literal\n";
