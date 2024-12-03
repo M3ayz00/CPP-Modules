@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 17:16:40 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/02 19:58:51 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/12/03 09:34:49 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/12/03 10:37:05 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
 
-template <typename T>
-void  swap(T& a, T& b)
-{
-  T tmp = a;
-  a = b;
-  b = tmp;
-}
+#include <iostream>
 
-template <typename T>
-T min(T& a, T& b)
+template<typename T>
+class Array
 {
-  if (a < b)
-    return (a);
-  return (b);
-}
+  private:
+    T             *ptr;
+    unsigned int  arrSize;
+  public:
+    Array();
+    Array(unsigned int _size);
+    Array(const Array& arr);
+    ~Array();
+    Array& operator=(const Array& arr);
+    T& operator[](unsigned int index);
 
-template <typename T>
-T max(T& a, T& b)
-{
-  if (a > b)
-    return (a);
-  return (b);
-}
+    unsigned int  size( void ) const;
+    
+};
+
+#include "Array.tpp"
 
 #endif
