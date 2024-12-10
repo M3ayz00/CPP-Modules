@@ -18,4 +18,5 @@ int main()
   Base &r  = *p;
   identify(p);
   identify(r);
+  delete p;
 }

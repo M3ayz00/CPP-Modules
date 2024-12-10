@@ -1,36 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 15:14:06 by msaadidi          #+#    #+#             */
-/*   Updated: 2024/12/01 15:38:59 by msaadidi         ###   ########.fr       */
+/*   Created: 2024/12/03 14:12:25 by msaadidi          #+#    #+#             */
+/*   Updated: 2024/12/03 14:12:26 by msaadidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
-
-#include <iostream>
-
-typedef unsigned long uintptr_t;
-
-class Data;
-
-class Serializer
-{
-  private :
-    Serializer();
-    Serializer(const Serializer& S);
-    Serializer& operator=(const Serializer& S);
-
-  public  :
-    ~Serializer();
-
-    static uintptr_t serialize(Data* ptr);
-    static Data* deserialize(uintptr_t raw);
-};
-
-#endif

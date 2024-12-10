@@ -10,19 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror  #-fsanitize=address -g3
+CXX = c++
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror  #-fsanitize=address -g3
 SRCS = main.cpp Base.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = convert
 
 all : $(NAME)
 
-%.o : %.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
-
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean :
 	@rm -rf $(OBJS)

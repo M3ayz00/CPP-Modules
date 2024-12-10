@@ -58,7 +58,7 @@ template<typename T> unsigned int  Array<T>::size( void ) const
 
 template<typename T> T& Array<T>::operator[](unsigned int index) 
 {
-  if (index < 0 || index > arrSize - 1)
+  if (index < 0 || index >= arrSize)
     throw(std::out_of_range("index out of bounds"));
   return (ptr[index]);
 }

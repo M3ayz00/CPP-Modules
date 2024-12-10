@@ -12,6 +12,8 @@
 
 #include "Serializer.hpp"
 
+Serializer::~Serializer() {}
+
 Serializer::Serializer() {}
 
 Serializer::Serializer(const Serializer& S)
@@ -25,7 +27,7 @@ Serializer& Serializer::operator=(const Serializer& S)
   return (*this);
 }
 
-Serializer::~Serializer() {}
+
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
@@ -36,12 +38,3 @@ Data* Serializer::deserialize(uintptr_t raw)
 {
   return (reinterpret_cast<Data *>(raw));
 }
-
-
-
-
-
-
-
-
-

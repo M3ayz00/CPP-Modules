@@ -20,6 +20,9 @@ class ScalarConverter
 {
   private :
     ScalarConverter();
+    ScalarConverter(const ScalarConverter& S);
+    ScalarConverter&  operator=(const ScalarConverter& S);
+
     static int   isSpecialDouble(const std::string& literal);
     static int   isSpecialFloat(const std::string& literal);
     static bool  isInt(const std::string& literal);
@@ -33,9 +36,7 @@ class ScalarConverter
     static void  printFloat(double value);
 
   public  :
-    ScalarConverter(const ScalarConverter& S);
     ~ScalarConverter();
-    ScalarConverter&  operator=(const ScalarConverter& S);
   
     static void  convert(const std::string& literal);
 };

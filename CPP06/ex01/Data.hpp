@@ -28,7 +28,7 @@ public:
   ~Data();
 
   void          setType(const std::string& _type);
-  std::string  getType( void ) const;
+  std::string   getType( void ) const;
   void          setSize(size_t _size);
   size_t        getSize( void ) const;
 };

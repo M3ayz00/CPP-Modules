@@ -67,18 +67,9 @@ bool ScalarConverter::isFloat(const std::string& literal)
 
 bool ScalarConverter::isDouble(const std::string& literal)
 {
-  size_t  pos = literal.find("f");
-  if (pos != std::string::npos) return (0);
-  pos = literal.find("e");
-  if (pos != std::string::npos)
-    if (std::isdigit(literal[pos - 1]) && (((literal[pos + 1] == '+' || literal[pos + 1] == '-') && std::isdigit(literal[pos + 2])) || std::isdigit(literal[pos + 1]))) return (1);
-  pos = literal.find(".");
-  if (pos == 0 || pos == literal.length() - 1 || !std::isdigit(literal[pos - 1]) || !std::isdigit(literal[pos + 1])) return (0);
-  pos = literal.find(".", pos + 1);
-  if (pos != std::string::npos) return (0);
-  char *doubleEnd;
-  std::strtof(literal.c_str(), &doubleEnd);
-  return (*doubleEnd == '\0');
+  char *end;
+  std::strtod(literal.c_str(), &end);
+  return (*end == '\0');
 }
 
 void  ScalarConverter::printChar(double value)
@@ -109,7 +100,7 @@ void  ScalarConverter::printDouble(double value)
   else if (std::isinf(value))
     std::cout << (std::signbit(value) ? "-inf\n" : "+inf\n"); 
   else
-    std::cout << std::setprecision(1) << value << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
 
 void  ScalarConverter::printFloat(double value)
@@ -125,8 +116,8 @@ void  ScalarConverter::printFloat(double value)
 
 bool  ScalarConverter::isDigit(const std::string& literal)
 {
-  return (isDouble(literal) || isInt(literal) || isFloat(literal)
-    || isSpecialDouble(literal) || isSpecialFloat(literal));
+  return (isSpecialDouble(literal) || isSpecialFloat(literal) || isInt(literal) || isFloat(literal)
+    || isDouble(literal));
 }
 
 void  ScalarConverter::convert(const std::string& literal)
