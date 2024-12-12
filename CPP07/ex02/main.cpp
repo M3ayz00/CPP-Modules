@@ -31,7 +31,7 @@ int main(int, char**)
     }
     try
     {
-      numbers[-2] = 0;
+      numbers[-1] = 0;
     }
     catch(const std::exception& e)
     {
@@ -51,26 +51,55 @@ int main(int, char**)
     delete [] mirror;//
   }
   {
-    Array<int> arr(5);
-    try
     {
-      std::cout << arr[2] << std::endl;
+      Array<int> arr;
+      try
+      {
+        std::cout << arr[0] << std::endl;
+      }
+      catch(const std::exception& e)
+      {
+        std::cerr << e.what() << '\n';
+      }
     }
-    catch (const std::out_of_range& e)
     {
-      std::cout << e.what() << std::endl;
+      const Array<int> arr(5);
+      try
+      {
+        std::cout << arr[0] << std::endl;
+        // arr[0] = 1;
+        // std::cout << arr[0] << std::endl;
+      }
+      catch (const std::out_of_range& e)
+      {
+        std::cout << e.what() << std::endl;
+      }
+    }
+    {
+      Array<int> arr(5);
+      try
+      {
+        std::cout << arr[0] << std::endl;
+        arr[0] = 1;
+        std::cout << arr[0] << std::endl;
+      }
+      catch (const std::out_of_range& e)
+      {
+        std::cout << e.what() << std::endl;
+      }
     }
   }
   {
     Array<std::string>arr(3);
-    arr[0] = "pixou";
-    arr[1] = "appah";
-    arr[2] = "okdaaa";
+    arr[0] = "test1";
+    arr[1] = "test2";
+    arr[2] = "test3";
     std::cout << arr[0] << " " << arr[1] << " " << arr[2] << "\n";
     Array<std::string>arr2(arr);
-    arr2[0] = "pixou2";
-    arr2[1] = "appah2";
-    arr2[2] = "okdaaa2";
+    std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
+    arr2[0] = "1test";
+    arr2[1] = "2test";
+    arr2[2] = "3test";
     std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
   }
   // {
@@ -78,5 +107,6 @@ int main(int, char**)
   //   std::cout << "PTR VALUE = " << *ptr << "\n";
   //   delete ptr;
   // }
+
   return 0;
 }

@@ -20,16 +20,17 @@ class Array
 {
   private:
     T             *ptr;
-    unsigned int  arrSize;
+    size_t        arrSize;
   public:
     Array();
     Array(unsigned int _size);
     Array(const Array& arr);
     ~Array();
     Array& operator=(const Array& arr);
+    const T& operator[](unsigned int index) const;
     T& operator[](unsigned int index);
 
-    unsigned int  size( void ) const;
+    size_t  size( void ) const;
     
 };
 

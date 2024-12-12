@@ -12,33 +12,46 @@
 
 #include "Array.hpp"
 
-template<typename T> Array<T>::Array()
+template<typename T>
+Array<T>::Array() : arrSize(0)
 {
-  arrSize = 0;
   ptr = new T[arrSize];
   *ptr = 0;
 }
 
-template<typename T> Array<T>::Array(unsigned int _size) : arrSize(_size)
+template<typename T>
+Array<T>::Array(unsigned int _size) : arrSize(_size)
 {
-  ptr = new T[arrSize];
-  for (unsigned int i = 0; i < arrSize; i++)
-    ptr[i] = T();
+  if (_size < 0)
+    throw std::invalid_argument("negative");
+  try
+  {
+    ptr = new T[arrSize];
+    for (unsigned int i = 0; i < arrSize; i++)
+      ptr[i] = T();
+  }
+  catch(std::exception& e)
+  {
+    std::cout << e.what();
+  }
 }
 
-template<typename T> Array<T>::Array(const Array& arr) : arrSize(arr.size())
+template<typename T>
+Array<T>::Array(const Array& arr) : arrSize(arr.size())
 {
   ptr = new T[arrSize];
   for (unsigned int i = 0; i < arrSize; i++)
     ptr[i] = arr.ptr[i];
 }
 
-template<typename T> Array<T>::~Array()
+template<typename T>
+Array<T>::~Array()
 {
   delete[] ptr;
 }
 
-template<typename T> Array<T>& Array<T>::operator=(const Array& arr)
+template<typename T>
+Array<T>& Array<T>::operator=(const Array& arr)
 {
   if (this != &arr)
   {
@@ -51,14 +64,24 @@ template<typename T> Array<T>& Array<T>::operator=(const Array& arr)
   return (*this);
 }
 
-template<typename T> unsigned int  Array<T>::size( void ) const
+template<typename T>
+size_t  Array<T>::size( void ) const
 {
   return (arrSize);
 }
 
-template<typename T> T& Array<T>::operator[](unsigned int index) 
+template<typename T>
+const T& Array<T>::operator[](unsigned int index) const
 {
-  if (index < 0 || index >= arrSize)
-    throw(std::out_of_range("index out of bounds"));
+  if (index != 0 && (index < 0 || index >= arrSize))
+    throw(std::out_of_range("Error: index out of bounds"));
+  return (ptr[index]);
+}
+
+template<typename T>
+T& Array<T>::operator[](unsigned int index)
+{
+  if (index != 0 && (index < 0 || index >= arrSize))
+    throw(std::out_of_range("Error: index out of bounds"));
   return (ptr[index]);
 }

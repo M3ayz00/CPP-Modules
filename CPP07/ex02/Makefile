@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror #-fsanitize=address -g3
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 NAME = template
