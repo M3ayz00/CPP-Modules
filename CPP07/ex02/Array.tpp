@@ -22,8 +22,6 @@ Array<T>::Array() : arrSize(0)
 template<typename T>
 Array<T>::Array(unsigned int _size) : arrSize(_size)
 {
-  if (_size < 0)
-    throw std::invalid_argument("negative");
   try
   {
     ptr = new T[arrSize];
