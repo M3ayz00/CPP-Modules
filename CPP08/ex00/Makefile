@@ -14,7 +14,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
-NAME = template
+NAME = easyfind
 
 all : $(NAME)
 

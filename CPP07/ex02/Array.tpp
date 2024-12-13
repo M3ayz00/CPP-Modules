@@ -16,22 +16,14 @@ template<typename T>
 Array<T>::Array() : arrSize(0)
 {
   ptr = new T[arrSize];
-  *ptr = 0;
 }
 
 template<typename T>
 Array<T>::Array(unsigned int _size) : arrSize(_size)
 {
-  try
-  {
-    ptr = new T[arrSize];
-    for (unsigned int i = 0; i < arrSize; i++)
-      ptr[i] = T();
-  }
-  catch(std::exception& e)
-  {
-    std::cout << e.what();
-  }
+  ptr = new T[arrSize];
+  for (unsigned int i = 0; i < arrSize; i++)
+    ptr[i] = T();
 }
 
 template<typename T>
@@ -71,7 +63,7 @@ size_t  Array<T>::size( void ) const
 template<typename T>
 const T& Array<T>::operator[](unsigned int index) const
 {
-  if (index != 0 && (index < 0 || index >= arrSize))
+  if (index < 0 || index >= arrSize)
     throw(std::out_of_range("Error: index out of bounds"));
   return (ptr[index]);
 }
@@ -79,7 +71,7 @@ const T& Array<T>::operator[](unsigned int index) const
 template<typename T>
 T& Array<T>::operator[](unsigned int index)
 {
-  if (index != 0 && (index < 0 || index >= arrSize))
+  if (index < 0 || index >= arrSize)
     throw(std::out_of_range("Error: index out of bounds"));
   return (ptr[index]);
 }

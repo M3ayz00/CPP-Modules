@@ -2,6 +2,60 @@
 #include "Array.hpp"
 #include <cstdlib>
 
+class Data
+{
+  public:
+    std::string type;
+    unsigned int size;
+    Data();
+    Data(const std::string& _type, unsigned int size);
+    Data& operator=(const Data& D);
+    Data(const Data& D);
+    ~Data();
+    bool  operator>(const Data& D);
+    bool  operator<(const Data& D);
+    bool  operator==(const Data& D);
+};
+
+Data::Data() : type("Some Data Type"), size(8) {}
+
+Data::Data(const std::string& _type, unsigned int _size) : type(_type), size(_size) {}
+
+Data::~Data() {}
+
+Data& Data::operator=(const Data& D)
+{
+  if (this != &D)
+  {
+    size = D.size;
+    type = D.type;
+  }
+  return (*this);
+}
+
+bool  Data::operator>(const Data& D)
+{
+  return (size > D.size);
+}
+
+bool  Data::operator<(const Data& D)
+{
+  return (size < D.size);
+}
+
+bool  Data::operator==(const Data& D)
+{
+  return (size == D.size);
+}
+
+std::ostream& operator<<(std::ostream& os, const Data& D)
+{
+  os << D.size << " " << D.type;
+  return (os);
+}
+
+Data::Data(const Data& D) : type(D.type), size(D.size){}
+
 #define MAX_VAL 750
 int main(int, char**)
 {
@@ -52,23 +106,11 @@ int main(int, char**)
   }
   {
     {
-      Array<int> arr;
-      try
-      {
-        std::cout << arr[0] << std::endl;
-      }
-      catch(const std::exception& e)
-      {
-        std::cerr << e.what() << '\n';
-      }
-    }
-    {
       const Array<int> arr(5);
       try
       {
-        std::cout << arr[0] << std::endl;
-        // arr[0] = 1;
-        // std::cout << arr[0] << std::endl;
+        std::cout << arr[1] << std::endl;
+        std::cout << arr[5] << std::endl;
       }
       catch (const std::out_of_range& e)
       {
@@ -91,22 +133,33 @@ int main(int, char**)
   }
   {
     Array<std::string>arr(3);
-    arr[0] = "test1";
-    arr[1] = "test2";
-    arr[2] = "test3";
+    arr[0] = "before1";
+    arr[1] = "before2";
+    arr[2] = "before3";
     std::cout << arr[0] << " " << arr[1] << " " << arr[2] << "\n";
-    Array<std::string>arr2(arr);
-    std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
-    arr2[0] = "1test";
-    arr2[1] = "2test";
-    arr2[2] = "3test";
-    std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
+    {
+      Array<std::string>arr2(arr);
+      std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
+      arr[0] = "after1";
+      arr[1] = "after2";
+      arr[2] = "after3";
+      std::cout << arr2[0] << " " << arr2[1] << " " << arr2[2] << "\n";
+      arr2[0] = "after1";
+      arr2[1] = "after2";
+      arr2[2] = "after3";
+    }
+    std::cout << arr[0] << " " << arr[1] << " " << arr[2] << "\n";
   }
-  // {
-  //   int * ptr = new int();
-  //   std::cout << "PTR VALUE = " << *ptr << "\n";
-  //   delete ptr;
-  // }
-
-  return 0;
+  {
+    Array<Data> arr(10);
+    for( unsigned int i = 0; i < arr.size(); i++)
+      std::cout << arr[i] << std::endl;
+    for( unsigned int i = 0; i < arr.size(); i++)
+      arr[i] = Data("Some Other Data Type", 16);
+    for( unsigned int i = 0; i < arr.size(); i++)
+      std::cout << arr[i] << std::endl;
+  }
+  {
+    Array<std::string> arr;
+  }
 }

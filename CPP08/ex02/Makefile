@@ -6,15 +6,15 @@
 #    By: msaadidi <msaadidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 18:16:21 by msaadidi          #+#    #+#              #
-#    Updated: 2024/12/03 10:19:05 by msaadidi         ###   ########.fr        #
+#    Updated: 2024/12/03 15:46:53 by msaadidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
+CXXFLAGS = -Wall -Wextra -Werror
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
-NAME = template
+NAME = MutantStack 
 
 all : $(NAME)
 

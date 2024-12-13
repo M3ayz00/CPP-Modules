@@ -13,25 +13,25 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include "easyfind.hpp"
+
 
 int main()
 {
-  // std::vector<std::string> vec = {"pixou", "riko", "hipi", "sfekx", "mnigil"};
-  // std::cout << "First element : " << vec[0] << std::endl;
-  // std::cout << "Last element : " << vec.back() << std::endl;
-  // for (size_t i = 0; i < vec.size(); i++)
-  //   std::cout << vec[i] << " ";
-  // std::cout << "\n";
-  // std::sort(vec.begin(), vec.end());
-  // for (size_t i = 0; i < vec.size(); i++)
-  //   std::cout << vec[i] << " ";
-  // std::cout << "\n";
-  // vec.insert(vec.begin(), std::string("appah"));
-  // for (size_t i = 0; i < vec.size(); i++)
-  //   std::cout << vec[i] << " ";
-  // std::cout << "\n";
-  // vec.erase(std::find(vec.begin(), vec.end(), std::string("hipi")));
-  // for (size_t i = 0; i < vec.size(); i++)
-  //   std::cout << vec[i] << " ";
-  // std::cout << "\n";
+  try
+  {
+    std::vector<int> vec{9, 1, 87,456,321,654,159,48,26,31,1489,9874,651,984513,1};
+    std::cout << easyfind(vec, 1) << std::endl;
+    vec.at(1) = 10;
+    std::cout << easyfind(vec, 1) << std::endl;
+    /////////////////////////////////////////////////////////////////////////////////
+    const std::vector<int> vec1{0, 1, 2, 12, 32, 45, 26, 94, 48};
+    std::cout << easyfind(vec1, 48) << std::endl;
+    vec.at(8) = 14;
+    std::cout << easyfind(vec1, 14) << std::endl;
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
 }
