@@ -11,58 +11,59 @@
 /* ************************************************************************** */
 
 #include "iter.hpp"
-class Data
-{
-  public:
-    std::string type;
-    unsigned int size;
-    Data();
-    Data(const std::string& _type, unsigned int size);
-    Data& operator=(const Data& D);
-    Data(const Data& D);
-    ~Data();
-    bool  operator>(const Data& D);
-    bool  operator<(const Data& D);
-    bool  operator==(const Data& D);
-};
 
-Data::Data() : type("Some Data Type"), size(8) {}
+// class Data
+// {
+//   public:
+//     std::string type;
+//     unsigned int size;
+//     Data();
+//     Data(const std::string& _type, unsigned int size);
+//     Data& operator=(const Data& D);
+//     Data(const Data& D);
+//     ~Data();
+//     bool  operator>(const Data& D);
+//     bool  operator<(const Data& D);
+//     bool  operator==(const Data& D);
+// };
 
-Data::Data(const std::string& _type, unsigned int _size) : type(_type), size(_size) {}
+// Data::Data() : type("Some Data Type"), size(8) {}
 
-Data::~Data() {}
+// Data::Data(const std::string& _type, unsigned int _size) : type(_type), size(_size) {}
 
-Data& Data::operator=(const Data& D)
-{
-  if (this != &D)
-  {
-    size = D.size;
-    type = D.type;
-  }
-  return (*this);
-}
-bool  Data::operator>(const Data& D)
-{
-  return (size > D.size);
-}
+// Data::~Data() {}
 
-bool  Data::operator<(const Data& D)
-{
-  return (size < D.size);
-}
+// Data& Data::operator=(const Data& D)
+// {
+//   if (this != &D)
+//   {
+//     size = D.size;
+//     type = D.type;
+//   }
+//   return (*this);
+// }
+// bool  Data::operator>(const Data& D)
+// {
+//   return (size > D.size);
+// }
 
-bool  Data::operator==(const Data& D)
-{
-  return (size == D.size);
-}
+// bool  Data::operator<(const Data& D)
+// {
+//   return (size < D.size);
+// }
 
-std::ostream& operator<<(std::ostream& os, const Data& D)
-{
-  os << D.size << " " << D.type;
-  return (os);
-}
+// bool  Data::operator==(const Data& D)
+// {
+//   return (size == D.size);
+// }
 
-Data::Data(const Data& D) : type(D.type), size(D.size){}
+// std::ostream& operator<<(std::ostream& os, const Data& D)
+// {
+//   os << D.size << " " << D.type;
+//   return (os);
+// }
+
+// Data::Data(const Data& D) : type(D.type), size(D.size){}
 
 
 template <typename T>
@@ -121,6 +122,6 @@ int main()
   iter(arr4, sizeArr4, addOne);
   iter(arr4, sizeArr4, printElement);
   std::cout << "----------------------------------------------------------" << std::endl;
-  Data arr5[5];
-  iter(arr5, 5, printElement);
+  // Data arr5[5];
+  // iter(arr5, 5, printElement);
 }

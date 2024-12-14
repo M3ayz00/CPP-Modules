@@ -21,6 +21,8 @@ Data::Data() : type("Some Data Type"), size(8) {}
 
 Data::Data(const std::string& _type, unsigned int _size) : type(_type), size(_size) {}
 
+Data::Data(const Data& D) : type(D.type), size(D.size){}
+
 Data::~Data() {}
 
 Data& Data::operator=(const Data& D)
@@ -54,62 +56,61 @@ std::ostream& operator<<(std::ostream& os, const Data& D)
   return (os);
 }
 
-Data::Data(const Data& D) : type(D.type), size(D.size){}
-
 #define MAX_VAL 750
 int main(int, char**)
 {
+  Array<int> numbers(MAX_VAL);
+  int* mirror = new int[MAX_VAL];
+  srand(time(NULL));
+  for (int i = 0; i < MAX_VAL; i++)
   {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
       const int value = rand();
       numbers[i] = value;
       mirror[i] = value;
-    }
-    //SCOPE
-    {
+  }
+  //SCOPE
+  {
       Array<int> tmp = numbers;
       Array<int> test(tmp);
-    }
+  }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
+  for (int i = 0; i < MAX_VAL; i++)
+  {
       if (mirror[i] != numbers[i])
       {
-        std::cerr << "didn't save the same value!!" << std::endl;
-        return 1;
+          std::cerr << "didn't save the same value!!" << std::endl;
+          return 1;
       }
-    }
-    try
-    {
-      numbers[-1] = 0;
-    }
-    catch(const std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
-    }
-    try
-    {
-      numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
-    }
-
-    for (int i = 0; i < MAX_VAL; i++)
-      numbers[i] = rand();
-    delete [] mirror;//
   }
+  try
+  {
+      numbers[-2] = 0;
+  }
+  catch(const std::exception& e)
+  {
+      std::cerr << e.what() << '\n';
+  }
+  try
+  {
+      numbers[MAX_VAL] = 0;
+  }
+  catch(const std::exception& e)
+  {
+      std::cerr << e.what() << '\n';
+  }
+
+  for (int i = 0; i < MAX_VAL; i++)
+  {
+      numbers[i] = rand();
+  }
+  delete [] mirror;//
   {
     {
       const Array<int> arr(5);
       try
       {
         std::cout << arr[1] << std::endl;
+        // arr[0] = 1;
         std::cout << arr[5] << std::endl;
       }
       catch (const std::out_of_range& e)
@@ -160,6 +161,15 @@ int main(int, char**)
       std::cout << arr[i] << std::endl;
   }
   {
-    Array<std::string> arr;
+    try
+    {
+      Array<Data> arr;
+      std::cout << arr[0];
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
   }
+  return 0;
 }
