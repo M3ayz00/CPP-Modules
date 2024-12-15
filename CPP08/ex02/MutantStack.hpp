@@ -3,32 +3,17 @@
 
 #include <iostream>
 #include <stack>
+#include <vector>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
-  private :
-    std::stack<T> s;
-
   public  :
-    MutantStack();
-    ~MutantStack();
-    MutantStack(const MutantStack& MS);
-    MutantStack& operator=(const MutantStack& MS);
-    class Iterator
-    {
-      private:
-        /* data */
-      public:
-        Iterator();
-        ~Iterator();
-        Iterator& operator=(const Iterator& it);
-        Iterator& operator++(int);
-        Iterator& operator++(const Iterator& it);
-        Iterator& operator--(int);
-        Iterator& operator--(const Iterator& it);
-    };
-    
+    MutantStack(){}
+    virtual ~MutantStack(){}
+    typedef typename std::deque<T>::iterator iterator;
+    iterator begin() { return this->c.begin(); }
+    iterator end() { return this->c.end(); }
 };
 
 #endif
