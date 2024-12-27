@@ -33,9 +33,7 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
         float price;
         std::getline(ss, date, ',');
         ss >> price;
-        char c;
-        ss >> c;
-        if (ss.fail() && isDateValid(date) && price > 0)
+        if (isDateValid(date) && price > 0)
             _database[date] = price;
         // std::cout << date << "  " << price << '\n';
     }
@@ -83,9 +81,7 @@ bool  BitcoinExchange::processInput(const std::string& filename)
         float value;
         std::getline(ss, date, '|');
         ss >> value;
-        char c;
-        ss >> c;
-        if (ss.fail() && isDateValid(date) && isPriceValid(value))
+        if (isDateValid(date) && isPriceValid(value))
             calculateValue(date, value);
     }
     file.close();
@@ -99,7 +95,7 @@ void  BitcoinExchange::calculateValue(const std::string& _date, float value)
         std::string closestDate = getClosestDate(_date);
         float exchangeRate = _database[closestDate];
         float result = value * exchangeRate;
-        std::cout << closestDate << " => " << value << " = " << result << std::endl;
+        std::cout << closestDate << " => " << value << " = " << std::fixed << std::setprecision(3) << result << std::endl;
     }
     catch(const std::exception& e)
     {
