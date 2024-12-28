@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include "Date.hpp"
 #include <cstdlib>
 
 BitcoinExchange::BitcoinExchange() {}
@@ -41,8 +42,14 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
         {
             if (date.empty() || price.empty()) return printError("invalid line in database.");
             double realPrice = strtod(price.c_str(), NULL);
-            if (isDateValid(date) && realPrice >= 0)
-                _database[date] = static_cast<float>(realPrice);
+            try
+            {
+                _database[Date(date)] = static_cast<float>(realPrice);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
         }
         else
             printError("invalid line in database.");
@@ -56,26 +63,11 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
     return true;
 }
 
-bool  BitcoinExchange::printError(const std::string& error)
+bool  printError(const std::string& error)
 {
     std::cout << "Error: " << error << "\n";
     return false;
 }
-
-bool  BitcoinExchange::isDateValid(const std::string& date)
-{
-    // if (date[4] != '-' || date[7] != '-') return printError("bad input => " + date);
-    std::stringstream ss(date);
-    int mounth, day, year;
-    char dash1, dash2;
-    ss >> year >> dash1 >> mounth >> dash2 >> day;
-    if (day < 1 || day > 31 || mounth < 1 || mounth > 12) return printError("bad input => " + date);
-    if ((mounth == 4 || mounth == 6 || mounth == 9|| mounth == 11) && day > 30) return printError("bad input => " + date);
-    bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    if (mounth == 2 && day > (isLeap ? 29 : 28)) return printError("bad input => " + date);
-    return true;
-}
-
 
 bool  BitcoinExchange::isPriceValid(const std::string& value)
 {
@@ -113,9 +105,16 @@ bool  BitcoinExchange::processInput(const std::string& filename)
         std::string date, value;
         if (std::getline(ss, date, '|') && std::getline(ss, value))
         {
-            if (date.empty() || value.empty()) return printError("invalid line in database.");
-            if (isDateValid(date) && isPriceValid(value))
-                calculateValue(date, strtod(value.c_str(), NULL));
+            if (date.empty() || value.empty()) return printError("invalid line in input.");
+            try
+            {
+                if (isPriceValid(value))
+                    calculateValue(Date(date), strtod(value.c_str(), NULL));
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
         }
         else
             printError("invalid line in input.");
@@ -124,11 +123,11 @@ bool  BitcoinExchange::processInput(const std::string& filename)
     return true;
 }
 
-void  BitcoinExchange::calculateValue(const std::string& _date, float value)
+void  BitcoinExchange::calculateValue(const Date& date, float value)
 {
     try
     {
-        std::string closestDate = getClosestDate(_date);
+        Date closestDate = getClosestDate(date);
         float exchangeRate = _database[closestDate];
         float result = value * exchangeRate;
         std::ostringstream formattedRes;
@@ -148,9 +147,9 @@ void  BitcoinExchange::calculateValue(const std::string& _date, float value)
     }
 }
 
-const std::string&  BitcoinExchange::getClosestDate(const std::string& targetDate)
+const Date&  BitcoinExchange::getClosestDate(const Date& targetDate)
 {
-    std::map<std::string, float>::const_iterator it = _database.lower_bound(targetDate);
+    std::map<Date, float>::const_iterator it = _database.lower_bound(targetDate);
     if ((it != _database.end() && it->first == targetDate))
         return it->first;
     if (it == _database.begin())
