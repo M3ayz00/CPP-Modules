@@ -20,7 +20,7 @@ class BitcoinExchange
   private :
     std::map<std::string, float> _database;
     bool  isDateValid(const std::string& date);
-    bool  isPriceValid(float price);
+    bool  isPriceValid(const std::string& price);
     void  calculateValue(const std::string& _date, float value);
     const std::string&  getClosestDate(const std::string& targetDate);
     bool  printError(const std::string& error);
