@@ -21,15 +21,15 @@ Date::Date(const std::string& date)
     std::stringstream ss(date);
     char dash1, dash2;
     ss >> year >> dash1 >> month >> dash2 >> day;
-    if (ss.fail() || dash1 != '-' || dash2 != '-') throw std::runtime_error("Invalid date format: " + date);
+    if (ss.fail() || dash1 != '-' || dash2 != '-') throw std::runtime_error("invalid date format => \"" + date + "\"");
 
-    if (month < 1 || month > 12) throw std::runtime_error("Invalid month: " + date);
-    if (day < 1 || day > 31) throw std::runtime_error("Invalid day: " + date);
+    if (month < 1 || month > 12) throw std::runtime_error("invalid month => " + date);
+    if (day < 1 || day > 31) throw std::runtime_error("invalid day => " + date);
     if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-        throw std::runtime_error("Invalid day for month: " + date);
+        throw std::runtime_error("invalid day for month => " + date);
     bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     if (month == 2 && day > (isLeap ? 29 : 28))
-        throw std::runtime_error("Invalid day for February: " + date);
+        throw std::runtime_error("invalid day for February => " + date);
 }
 
 Date::~Date() {}

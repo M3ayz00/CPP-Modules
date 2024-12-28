@@ -79,7 +79,6 @@ bool  BitcoinExchange::isPriceValid(const std::string& value)
     return true;
 }
 
-
 bool  BitcoinExchange::processInput(const std::string& filename)
 {
     std::ifstream file(filename.c_str());
@@ -103,21 +102,19 @@ bool  BitcoinExchange::processInput(const std::string& filename)
         }
         std::istringstream ss(line);
         std::string date, value;
-        if (std::getline(ss, date, '|') && std::getline(ss, value))
+        std::getline(ss, date, '|');
+        std::getline(ss, value);
+        if (date.empty() || value.empty()) return printError("bad input => " + date);
+        try
         {
-            if (date.empty() || value.empty()) return printError("invalid line in input.");
-            try
-            {
-                if (isPriceValid(value))
-                    calculateValue(Date(date), strtod(value.c_str(), NULL));
-            }
-            catch(const std::exception& e)
-            {
-                std::cerr << e.what() << '\n';
-            }
+            Date _date(date);
+            if (isPriceValid(value))
+                calculateValue(_date, strtod(value.c_str(), NULL));
         }
-        else
-            printError("invalid line in input.");
+        catch(const std::exception& e)
+        {
+            printError(e.what());
+        }
     }
     file.close();
     return true;
@@ -138,7 +135,7 @@ void  BitcoinExchange::calculateValue(const Date& date, float value)
             finalOutput.erase(pos);
         else
             finalOutput.erase(pos + 1);
-        std::cout << closestDate << " => " << value << " = " << finalOutput << std::endl;
+        std::cout << date << " => " << value << " = " << finalOutput << std::endl;
         
     }
     catch(const std::exception& e)
