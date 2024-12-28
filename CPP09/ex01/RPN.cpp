@@ -25,8 +25,8 @@ int RPN::evaluate(const std::string& notation)
         {
             if (operands.size() < 2)
                 throw std::runtime_error("Error");
-            int a = operands.top(); operands.pop();
             int b = operands.top(); operands.pop();
+            int a = operands.top(); operands.pop();
             if (token == "+") operands.push(a + b);
             if (token == "-") operands.push(a - b);
             if (token == "*") operands.push(a * b);
