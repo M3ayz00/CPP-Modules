@@ -45,6 +45,7 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
             try
             {
                 _database[Date(date)] = static_cast<float>(realPrice);
+                Date lastDate = Date(date);
             }
             catch(const std::exception& e)
             {
