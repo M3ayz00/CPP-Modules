@@ -5,7 +5,7 @@ int main(int ac, char **av)
     (void) av;
     if (ac != 2)
     {
-        std::cout << "Error: could not open file.\n";
+        std::cout << "Usage: ./btc [input_file]\n";
         return 1;
     }
     BitcoinExchange btc;

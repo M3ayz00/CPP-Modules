@@ -1,6 +1,5 @@
 #include "BitcoinExchange.hpp"
-#include "Date.hpp"
-#include <cstdlib>
+#include "DateAndPrice.hpp"
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -30,26 +29,22 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
         if (line.empty()) continue;
         if (isFirstLine)
         {
+            isFirstLine = false;
             if (line.find("date") != std::string::npos)
-            {
-                isFirstLine = false;
                 continue;
-            }
         }
         std::istringstream ss(line);
         std::string date, price;
         if (std::getline(ss, date, ',') && std::getline(ss, price))
         {
-            if (date.empty() || price.empty()) return printError("invalid line in database.");
-            double realPrice = strtod(price.c_str(), NULL);
             try
             {
-                _database[Date(date)] = static_cast<float>(realPrice);
-                Date lastDate = Date(date);
+                DateAndPrice actualDate(date, price);
+                _database[actualDate] = actualDate.getPrice();
             }
             catch(const std::exception& e)
             {
-                std::cerr << e.what() << '\n';
+                printError(e.what());
             }
         }
         else
@@ -70,16 +65,6 @@ bool  printError(const std::string& error)
     return false;
 }
 
-bool  BitcoinExchange::isPriceValid(const std::string& value)
-{
-    char *end;
-    double price = strtod(value.c_str(), &end);
-    if (*end != '\0') return printError("not a valid number.");
-    if (price < 0) return printError("not a positive number.");
-    if (price > 1000) return printError("too large a number.");
-    return true;
-}
-
 bool  BitcoinExchange::processInput(const std::string& filename)
 {
     std::ifstream file(filename.c_str());
@@ -95,22 +80,18 @@ bool  BitcoinExchange::processInput(const std::string& filename)
         if (line.empty()) continue;
         if (isFirstLine)
         {
+            isFirstLine = false;
             if (line.find("date") != std::string::npos)
-            {
-                isFirstLine = false;
                 continue;
-            }
         }
         std::istringstream ss(line);
         std::string date, value;
         std::getline(ss, date, '|');
         std::getline(ss, value);
-        if (date.empty() || value.empty()) return printError("bad input => " + date);
         try
         {
-            Date _date(date);
-            if (isPriceValid(value))
-                calculateValue(_date, strtod(value.c_str(), NULL));
+            DateAndPrice _date(date, value);
+            calculateValue(_date, _date.getPrice());
         }
         catch(const std::exception& e)
         {
@@ -121,15 +102,15 @@ bool  BitcoinExchange::processInput(const std::string& filename)
     return true;
 }
 
-void  BitcoinExchange::calculateValue(const Date& date, float value)
+void  BitcoinExchange::calculateValue(const DateAndPrice& date, float value)
 {
     try
     {
-        Date closestDate = getClosestDate(date);
-        float exchangeRate = _database[closestDate];
-        float result = value * exchangeRate;
+        if (date.getPrice() < 0) throw std::runtime_error("not a positive number.");
+        if (date.getPrice() > 1000) throw std::runtime_error("too large a number.");
+        DateAndPrice closestDate = getClosestDate(date);
         std::ostringstream formattedRes;
-        formattedRes << std::fixed << std::setprecision(3) << result;
+        formattedRes << std::fixed << std::setprecision(3) << value * closestDate.getPrice();
         std::string finalOutput = formattedRes.str();
         size_t pos = finalOutput.find_last_not_of('0');
         if (pos != std::string::npos && finalOutput[pos] == '.')
@@ -141,17 +122,17 @@ void  BitcoinExchange::calculateValue(const Date& date, float value)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        printError(e.what());
     }
 }
 
-const Date&  BitcoinExchange::getClosestDate(const Date& targetDate)
+const DateAndPrice&  BitcoinExchange::getClosestDate(const DateAndPrice& targetDate)
 {
-    std::map<Date, float>::const_iterator it = _database.lower_bound(targetDate);
+    std::map<DateAndPrice, float>::const_iterator it = _database.lower_bound(targetDate);
     if ((it != _database.end() && it->first == targetDate))
         return it->first;
     if (it == _database.begin())
-        throw std::runtime_error("Error: no earlier date exists in the database.");
+        throw std::runtime_error("no earlier date exists in the database.");
     --it;
     return it->first;
 }

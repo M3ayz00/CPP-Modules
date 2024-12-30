@@ -12,7 +12,7 @@
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
-SRCS = main.cpp BitcoinExchange.cpp Date.cpp
+SRCS = main.cpp BitcoinExchange.cpp DateAndPrice.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = btc
 

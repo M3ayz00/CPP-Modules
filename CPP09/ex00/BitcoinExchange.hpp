@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <map>
 
-class Date;
+class DateAndPrice;
 
 class BitcoinExchange
 {
@@ -20,10 +20,9 @@ class BitcoinExchange
     bool  processInput(const std::string& filename);
 
   private :
-    std::map<Date, float> _database;
-    bool  isPriceValid(const std::string& price);
-    void  calculateValue(const Date& date, float value);
-    const Date&  getClosestDate(const Date& targetDate);
+    std::map<DateAndPrice, float> _database;
+    void  calculateValue(const DateAndPrice& date, float value);
+    const DateAndPrice&  getClosestDate(const DateAndPrice& targetDate);
 };
 
 bool  printError(const std::string& error);
