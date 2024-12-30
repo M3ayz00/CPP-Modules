@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <map>
+#include <set>
 
 class DateAndPrice;
 
@@ -20,7 +20,7 @@ class BitcoinExchange
     bool  processInput(const std::string& filename);
 
   private :
-    std::map<DateAndPrice, float> _database;
+    std::set<DateAndPrice> _database;
     void  calculateValue(const DateAndPrice& date, float value);
     const DateAndPrice&  getClosestDate(const DateAndPrice& targetDate);
 };

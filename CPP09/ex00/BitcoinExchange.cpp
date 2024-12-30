@@ -40,7 +40,7 @@ bool  BitcoinExchange::loadDatabase(const std::string& filename)
             try
             {
                 DateAndPrice actualDate(date, price);
-                _database[actualDate] = actualDate.getPrice();
+                _database.insert(actualDate);
             }
             catch(const std::exception& e)
             {
@@ -128,11 +128,11 @@ void  BitcoinExchange::calculateValue(const DateAndPrice& date, float value)
 
 const DateAndPrice&  BitcoinExchange::getClosestDate(const DateAndPrice& targetDate)
 {
-    std::map<DateAndPrice, float>::const_iterator it = _database.lower_bound(targetDate);
-    if ((it != _database.end() && it->first == targetDate))
-        return it->first;
+    std::set<DateAndPrice>::const_iterator it = _database.lower_bound(targetDate);
+    if ((it != _database.end() && *it == targetDate))
+        return *it;
     if (it == _database.begin())
         throw std::runtime_error("no earlier date exists in the database.");
     --it;
-    return it->first;
+    return *it;
 }
