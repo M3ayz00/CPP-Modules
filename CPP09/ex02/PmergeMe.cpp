@@ -4,37 +4,29 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
 
-PmergeMe::PmergeMe(const PmergeMe& r) :container1(r.container1), container2(r.container2) {}
+PmergeMe::PmergeMe(const PmergeMe& r)  { (void)r; }
 
 PmergeMe&  PmergeMe::operator=(const PmergeMe& r) 
 {
-    if (this != &r)
-    {
-        container1 = r.container1;
-        container2 = r.container2;
-    } 
+    (void) r;
     return *this; 
 }
 
-bool    PmergeMe::isValid(char *av)
+int  isValid(char *number)
 {
-    if (std::atoi(av) < 0)
-    {
-        std::cerr << "Error: invalid number.\n";
-        exit(1);
-    }
-    return true;
+    if (!*number) throw std::runtime_error("Error: invalid number \"" + std::string(number) + "\"");
+    for (char *temp = number; *temp; temp++)
+        if (!std::isdigit(*temp)) throw std::runtime_error("Error: invalid number \"" + std::string(number) + "\"");
+    std::istringstream ss(number);
+    unsigned long num;
+    ss >> num;
+    if (num > INT_MAX || num < 0) throw std::runtime_error("Error: invalid number \"" + std::string(number) + "\"");
+    return (num);
 }
 
-void  PmergeMe::addNumbers(int ac, char **av)
+std::pair<int, int> actualPairing(int value1, int value2)
 {
-    for (size_t i = 1; i < ac - 1; i += 2)
-    {
-        if (isValid(av[i]))
-        {
-            container1.push_back(std::atoi(av[i]));
-            container2.push_back(std::atoi(av[i]));
-        }
-    }
-
+    if (value1 > value2)
+        return (std::make_pair(value2, value1));
+    return (std::make_pair(value1, value2));
 }

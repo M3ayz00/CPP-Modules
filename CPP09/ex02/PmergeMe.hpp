@@ -19,3 +19,8 @@ class PmergeMe
         ~PmergeMe();
         void  addNumbers(int ac, char **av);
 };
+
+int  isValid(char *number);
+std::pair<int, int> actualPairing(int value1, int value2);
+
+#include "PmergeMe.tpp"
