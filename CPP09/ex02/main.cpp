@@ -27,8 +27,8 @@ int main(int ac, char **av)
         av++;
         for (; *av; av++)
         {
-            merger.addToVec(isValid(*av));
-            merger.addToList(isValid(*av));
+            // merger.addToVec(isValid(*av));
+            // merger.addToList(isValid(*av));
         }
     }
     catch(const std::exception& e)

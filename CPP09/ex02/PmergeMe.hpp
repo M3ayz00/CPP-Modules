@@ -1,19 +1,21 @@
 #pragma once
 
 #include <iostream>
+#include <utility>
+#include <algorithm>
 #include <vector>
-#include <list>
+#include <deque>
+#include <sstream>
+#include <climits> 
 
 class PmergeMe
 {
     private :
-        std::vector<int> container1;
-        std::list<int> container2;
         PmergeMe(const PmergeMe& r);
         PmergeMe&  operator=(const PmergeMe& r);
+        bool    isValid(char *av);
     public  :
         PmergeMe();
         ~PmergeMe();
-        void  addToList(unsigned int num);
-        void  addToVec(unsigned int num);
+        void  addNumbers(int ac, char **av);
 };

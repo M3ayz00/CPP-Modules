@@ -16,12 +16,25 @@ PmergeMe&  PmergeMe::operator=(const PmergeMe& r)
     return *this; 
 }
 
-void  PmergeMe::addToList(unsigned int num)
+bool    PmergeMe::isValid(char *av)
 {
-    container2.push_back(num);
+    if (std::atoi(av) < 0)
+    {
+        std::cerr << "Error: invalid number.\n";
+        exit(1);
+    }
+    return true;
 }
 
-void  PmergeMe::addToVec(unsigned int num)
+void  PmergeMe::addNumbers(int ac, char **av)
 {
-    container1.push_back(num);
+    for (size_t i = 1; i < ac - 1; i += 2)
+    {
+        if (isValid(av[i]))
+        {
+            container1.push_back(std::atoi(av[i]));
+            container2.push_back(std::atoi(av[i]));
+        }
+    }
+
 }
