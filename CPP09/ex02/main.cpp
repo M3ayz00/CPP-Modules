@@ -1,11 +1,10 @@
 #include "PmergeMe.hpp"
-#include <sstream>
 
 int main(int ac, char **av)
 {
     if (ac == 1)
     {
-        std::cerr << "Usage: ./PmergeMe sequence of numbers...\n";
+        std::cerr << "Usage: ./PmergeMe (sequence of numbers...)\n";
         return (1);
     }
     try
@@ -13,18 +12,19 @@ int main(int ac, char **av)
         std::vector<std::pair<int, int>> vec;
         int leftover = -1;
         ::initContainer(ac, av, vec, &leftover);
+        std::vector<int> mainChain;
         
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-     try
+    try
     {
         std::deque<std::pair<int, int>> deq;
         int leftover = -1;
         ::initContainer(ac, av, deq, &leftover);
-        
+        std::deque<int> mainChain;
     }
     catch(const std::exception& e)
     {
