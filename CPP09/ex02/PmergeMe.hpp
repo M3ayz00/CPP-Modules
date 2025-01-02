@@ -7,20 +7,23 @@
 #include <deque>
 #include <sstream>
 #include <climits> 
+#include <ctime>    
 
+template <typename Container>
 class PmergeMe
 {
     private :
+        Container C;
         PmergeMe(const PmergeMe& r);
         PmergeMe&  operator=(const PmergeMe& r);
-        bool    isValid(char *av);
+        int  isValid(char *number);
+        void  printContainer(Container& C, const std::string& message);
     public  :
+        void    initContainer(int ac, char **av, Container &C, const std::string& containerType);
         PmergeMe();
+        PmergeMe(Container& C);
         ~PmergeMe();
-        void  addNumbers(int ac, char **av);
 };
 
-int  isValid(char *number);
-std::pair<int, int> actualPairing(int value1, int value2);
 
 #include "PmergeMe.tpp"

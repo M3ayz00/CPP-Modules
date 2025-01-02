@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <ctime>
 
 int main(int ac, char **av)
 {
@@ -9,10 +10,9 @@ int main(int ac, char **av)
     }
     try
     {
-        std::vector<std::pair<int, int>> vec;
-        int leftover = -1;
-        ::initContainer(ac, av, vec, &leftover);
-        std::vector<int> mainChain;
+        std::vector<int> vec;
+        PmergeMe<std::vector<int> > apah(vec);
+        apah.initContainer(ac, av, vec, "vector");
         
     }
     catch(const std::exception& e)
@@ -21,10 +21,9 @@ int main(int ac, char **av)
     }
     try
     {
-        std::deque<std::pair<int, int>> deq;
-        int leftover = -1;
-        ::initContainer(ac, av, deq, &leftover);
-        std::deque<int> mainChain;
+        std::deque<int> deq;
+        PmergeMe<std::deque<int> > apah(deq);
+        apah.initContainer(ac, av, deq, "deque");
     }
     catch(const std::exception& e)
     {
