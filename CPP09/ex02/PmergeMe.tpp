@@ -37,8 +37,14 @@ Container PmergeMe<Container>::generateJacobSthal(int n)
 {
     Container jSequence;
     jSequence.push_back(0);
+    if (n == 0) return jSequence;
     jSequence.push_back(1);
-    
+    if (n == 1) return jSequence;
+    if (n == 2)
+    {
+        jSequence.push_back(2);
+        return jSequence;
+    }
     while (jSequence.back() < n) {
         typename Container::value_type next = jSequence[jSequence.size() - 1] + 2 * jSequence[jSequence.size() - 2];
         if (next > n) break;
@@ -52,13 +58,23 @@ Container PmergeMe<Container>::generateInsertionSequence(int n)
 {
     Container jacob = generateJacobSthal(n);
     Container sequence;
-    
+    std::vector<bool> included(n + 1, false);
     for (size_t i = 1; i < jacob.size(); i++) {
-        for (int k = jacob[i]; k > jacob[i - 1]; k--)
-            if (k <= n) sequence.push_back(k - 1);
+        for (int k = jacob[i]; k > jacob[i - 1]; k--) {
+            if (k <= n && !included[k]) {
+                sequence.push_back(k);
+                included[k] = true;
+            }
+        }
     }
-    return sequence;
+    for (int i = 1; i <= n; i++) {
+        if (!included[i]) {
+            sequence.push_back(i);
+        }
+    }
+    return (sequence);
 }
+
 
 template <typename Container>
 typename Container::iterator  PmergeMe<Container>::binarySearch(typename Container::iterator first, typename Container::iterator last, typename Container::value_type value)
@@ -81,8 +97,8 @@ template <typename Container>
 void    PmergeMe<Container>::insertIntoSorted(Container& sorted, typename Container::value_type value)
 {
     typename Container::iterator pos = binarySearch(sorted.begin(), sorted.end(), value);
-    // if (*pos != value)
-    sorted.insert(pos, value);
+    if (pos == sorted.end() || *pos != value)
+        sorted.insert(pos, value);
 }
 
 template <typename Container>
@@ -90,7 +106,12 @@ void    PmergeMe<Container>::mergeInsert(Container& mainChain, Container& pend)
 {
     Container insertionOrder = generateInsertionSequence(pend.size());
     for (size_t i = 0; i < insertionOrder.size() ; i++)
-        insertIntoSorted(mainChain, pend[insertionOrder[i]]);
+    {
+        typename Container::iterator it = pend.begin();
+        std::advance(it, insertionOrder[i] - 1);
+        insertIntoSorted(mainChain, *it);
+    }
+
 }
 
 template <typename Container>
@@ -106,7 +127,7 @@ Container  PmergeMe<Container>::fordJohnsonSort(Container& C)
         {
             mainChain.push_back(C[i]);
             pend.push_back(C[i + 1]);
-        } 
+        }
         else 
         {
             mainChain.push_back(C[i + 1]);
@@ -127,11 +148,11 @@ void    PmergeMe<Container>::printContainer(Container& C, const std::string& mes
 {
     if (!message.empty())
         std::cout << message;
-    // int i = 0;
+    int i = 0;
     for (typename Container::iterator it = C.begin(); it != C.end(); it++)
     {
         std::cout << *it << " ";
-        // if (++i == 3) break ;
+        if (++i == 3) break ;
     }
     std::cout << "[...]" << std::endl;
 }
@@ -151,8 +172,8 @@ void    PmergeMe<Container>::initContainer(int ac, char **av, Container &C, cons
     std::cout << "Time to process a range of " 
         << C.size() << " elements with std::" << containerType
         << " : " << ((static_cast<double>(end - begin) / CLOCKS_PER_SEC) * 1000000)
-        << "us\n";
-    std::cout << std::endl;
+        << "us"
+        << std::endl;
 }
 
 int mainAlgo(int ac, char **av)
