@@ -33,43 +33,93 @@ int  PmergeMe<Container>::isValid(char *number)
 }
 
 template <typename Container>
-void    insertIntoSorted(Container& sorted, typename Container::value_type value)
+Container PmergeMe<Container>::generateJacobSthal(int n) 
 {
-    typename Container::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), value);
+    Container jSequence;
+    jSequence.push_back(0);
+    jSequence.push_back(1);
+    
+    while (jSequence.back() < n) {
+        typename Container::value_type next = jSequence[jSequence.size() - 1] + 2 * jSequence[jSequence.size() - 2];
+        if (next > n) break;
+        jSequence.push_back(next);
+    }
+    return (jSequence);
+}
+
+template <typename Container>
+Container PmergeMe<Container>::generateInsertionSequence(int n) 
+{
+    Container jacob = generateJacobSthal(n);
+    Container sequence;
+    
+    for (size_t i = 1; i < jacob.size(); i++) {
+        for (int k = jacob[i]; k > jacob[i - 1]; k--)
+            if (k <= n) sequence.push_back(k - 1);
+    }
+    return sequence;
+}
+
+template <typename Container>
+typename Container::iterator  PmergeMe<Container>::binarySearch(typename Container::iterator first, typename Container::iterator last, typename Container::value_type value)
+{
+    while (first < last)
+    {
+        typename Container::iterator mid = first + (last - first) / 2;
+        if (*mid == value)
+            return mid;
+        else if (value > *mid)
+            first = mid + 1;
+        else
+            last = mid;
+    }
+    return (first);
+}
+
+
+template <typename Container>
+void    PmergeMe<Container>::insertIntoSorted(Container& sorted, typename Container::value_type value)
+{
+    typename Container::iterator pos = binarySearch(sorted.begin(), sorted.end(), value);
+    // if (*pos != value)
     sorted.insert(pos, value);
 }
 
 template <typename Container>
-void    mergeInsert(Container& largest, Container& smallest)
+void    PmergeMe<Container>::mergeInsert(Container& mainChain, Container& pend)
 {
-    for (typename Container::iterator it = smallest.begin(); it != smallest.end(); it++)
-        insertIntoSorted(largest, *it);
+    Container insertionOrder = generateInsertionSequence(pend.size());
+    for (size_t i = 0; i < insertionOrder.size() ; i++)
+        insertIntoSorted(mainChain, pend[insertionOrder[i]]);
 }
 
 template <typename Container>
-Container  fordJohnsonSort(Container& C)
+Container  PmergeMe<Container>::fordJohnsonSort(Container& C)
 {
-    if (C.size() <= 1)
-        return C;
-    Container smallest, largest;
-    for (typename Container::iterator it = C.begin(); it != C.end() && it + 1 != C.end(); it+=2)
+    if (C.size() <= 1) return C;
+    Container mainChain, pend;
+    bool hasStraggler = C.size() % 2;
+    typename Container::value_type straggler;
+    for (size_t i = 0; i < C.size() - (hasStraggler ? 1 : 0); i += 2)
     {
-        if  (*it > *(it + 1))
+        if (C[i] > C[i + 1]) 
         {
-            largest.push_back(*it);
-            smallest.push_back(*(it + 1));
-        }
-        else
+            mainChain.push_back(C[i]);
+            pend.push_back(C[i + 1]);
+        } 
+        else 
         {
-            smallest.push_back(*it);
-            largest.push_back(*(it + 1));
+            mainChain.push_back(C[i + 1]);
+            pend.push_back(C[i]);
         }
     }
-    if (C.size() % 2 != 0)
-        smallest.push_back(C.back());
-    largest = fordJohnsonSort(largest);
-    mergeInsert(largest, smallest);
-    return (largest);
+    if (hasStraggler) 
+        straggler = C.back();
+    mainChain = fordJohnsonSort(mainChain);
+    mergeInsert(mainChain, pend);
+    if (hasStraggler)
+        insertIntoSorted(mainChain, straggler);
+    return (mainChain);
 }
 
 template <typename Container>
@@ -77,11 +127,11 @@ void    PmergeMe<Container>::printContainer(Container& C, const std::string& mes
 {
     if (!message.empty())
         std::cout << message;
-    int i = 0;
+    // int i = 0;
     for (typename Container::iterator it = C.begin(); it != C.end(); it++)
     {
         std::cout << *it << " ";
-        if (++i == 3) break ;
+        // if (++i == 3) break ;
     }
     std::cout << "[...]" << std::endl;
 }
@@ -100,7 +150,38 @@ void    PmergeMe<Container>::initContainer(int ac, char **av, Container &C, cons
     printContainer(C, "After: ");
     std::cout << "Time to process a range of " 
         << C.size() << " elements with std::" << containerType
-        << " : " << static_cast<double>((end - begin) * CLOCKS_PER_SEC / 1000000)
+        << " : " << ((static_cast<double>(end - begin) / CLOCKS_PER_SEC) * 1000000)
         << "us\n";
     std::cout << std::endl;
+}
+
+int mainAlgo(int ac, char **av)
+{
+    if (ac == 1)
+    {
+        std::cerr << "Usage: ./PmergeMe (sequence of numbers...)\n";
+        return (1);
+    }
+    try
+    {
+        std::vector<int> vec;
+        PmergeMe<std::vector<int> > FJ(vec);
+        FJ.initContainer(ac, av, vec, "vector");
+        
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        std::deque<int> deq;
+        PmergeMe<std::deque<int> > FJ(deq);
+        FJ.initContainer(ac, av, deq, "deque");
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    return (0);
 }

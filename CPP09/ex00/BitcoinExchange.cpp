@@ -91,7 +91,7 @@ bool  BitcoinExchange::processInput(const std::string& filename)
         try
         {
             DateAndPrice _date(date, value);
-            calculateValue(_date, _date.getPrice());
+            calculateValue(_date);
         }
         catch(const std::exception& e)
         {
@@ -102,7 +102,7 @@ bool  BitcoinExchange::processInput(const std::string& filename)
     return true;
 }
 
-void  BitcoinExchange::calculateValue(const DateAndPrice& date, float value)
+void  BitcoinExchange::calculateValue(const DateAndPrice& date)
 {
     try
     {
@@ -110,14 +110,14 @@ void  BitcoinExchange::calculateValue(const DateAndPrice& date, float value)
         if (date.getPrice() > 1000) throw std::runtime_error("too large a number.");
         DateAndPrice closestDate = getClosestDate(date);
         std::ostringstream formattedRes;
-        formattedRes << std::fixed << std::setprecision(3) << value * closestDate.getPrice();
+        formattedRes << std::fixed << std::setprecision(3) << date.getPrice() * closestDate.getPrice();
         std::string finalOutput = formattedRes.str();
         size_t pos = finalOutput.find_last_not_of('0');
         if (pos != std::string::npos && finalOutput[pos] == '.')
             finalOutput.erase(pos);
         else
             finalOutput.erase(pos + 1);
-        std::cout << date << " => " << value << " = " << finalOutput << std::endl;
+        std::cout << date << " => " << date.getPrice() << " = " << finalOutput << std::endl;
         
     }
     catch(const std::exception& e)
