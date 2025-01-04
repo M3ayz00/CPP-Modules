@@ -8,6 +8,7 @@
 #include <sstream>
 #include <climits> 
 #include <ctime>    
+#include <iomanip>
 
 template <typename Container>
 class PmergeMe

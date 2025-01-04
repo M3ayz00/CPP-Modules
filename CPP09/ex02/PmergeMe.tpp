@@ -59,18 +59,21 @@ Container PmergeMe<Container>::generateInsertionSequence(int n)
     Container jacob = generateJacobSthal(n);
     Container sequence;
     std::vector<bool> included(n + 1, false);
-    for (size_t i = 1; i < jacob.size(); i++) {
-        for (int k = jacob[i]; k > jacob[i - 1]; k--) {
-            if (k <= n && !included[k]) {
+    for (size_t i = 1; i < jacob.size(); i++) 
+    {
+        for (int k = jacob[i]; k > jacob[i - 1]; k--) 
+        {
+            if (k <= n && !included[k]) 
+            {
                 sequence.push_back(k);
                 included[k] = true;
             }
         }
     }
-    for (int i = 1; i <= n; i++) {
-        if (!included[i]) {
+    for (int i = 1; i <= n; i++) 
+    {
+        if (!included[i])
             sequence.push_back(i);
-        }
     }
     return (sequence);
 }
@@ -152,15 +155,16 @@ void    PmergeMe<Container>::printContainer(Container& C, const std::string& mes
     for (typename Container::iterator it = C.begin(); it != C.end(); it++)
     {
         std::cout << *it << " ";
-        if (++i == 3) break ;
+        if (++i == 5) break ;
     }
-    std::cout << "[...]" << std::endl;
+    if (i < static_cast<int>(C.size()))
+        std::cout << "[...]";
+    std::cout << std::endl;
 }
 
 template <typename Container>
 void    PmergeMe<Container>::initContainer(int ac, char **av, Container &C, const std::string& containerType)
 {
-    if (ac < 3) throw std::runtime_error("Error: not enough arguments.");
     clock_t begin, end;
     begin = clock();
     for (int i = 1; i < ac; i++)
@@ -171,13 +175,19 @@ void    PmergeMe<Container>::initContainer(int ac, char **av, Container &C, cons
     printContainer(C, "After: ");
     std::cout << "Time to process a range of " 
         << C.size() << " elements with std::" << containerType
-        << " : " << ((static_cast<double>(end - begin) / CLOCKS_PER_SEC) * 1000000)
+        << " : " 
+        << end - begin
         << "us"
         << std::endl;
 }
 
 int mainAlgo(int ac, char **av)
 {
+    if (ac < 3)
+    {
+        std::cerr << "Error: not enough arguments.";
+        return (1);
+    }
     if (ac == 1)
     {
         std::cerr << "Usage: ./PmergeMe (sequence of numbers...)\n";
@@ -192,7 +202,7 @@ int mainAlgo(int ac, char **av)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Vector " << e.what() << '\n';
     }
     try
     {
@@ -202,7 +212,7 @@ int mainAlgo(int ac, char **av)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Deque "<< e.what() << '\n';
     }
     return (0);
 }

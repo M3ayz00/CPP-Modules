@@ -16,15 +16,15 @@ DateAndPrice& DateAndPrice::operator=(const DateAndPrice& D)
     return *this;
 }
 
-void  DateAndPrice::isStringValid(std::string &striing)
+void  DateAndPrice::isStringValid(std::string &input)
 {
-    std::string::size_type start = striing.find_first_not_of(" \t\n");
-    std::string::size_type end = striing.find_last_not_of(" \t\n");
+    std::string::size_type start = input.find_first_not_of(" \t");
+    std::string::size_type end = input.find_last_not_of(" \t");
     if (start != std::string::npos)
-        striing = striing.substr(start, end - start + 1);
+        input = input.substr(start, end - start + 1);
     else
-        striing.clear();
-    if (striing.find_first_of(" \t\n") != std::string::npos) throw std::runtime_error("bad input => " + striing);
+        input.clear();
+    if (input.find_first_of(" \t\n") != std::string::npos) throw std::runtime_error("bad input => " + input);
 }
 
 void  DateAndPrice::isPriceValid(std::string &_price)
